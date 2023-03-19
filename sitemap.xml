@@ -20,7 +20,7 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/posts/96555fb2.html</loc>
+    <loc>https://www.l2xy.com/posts/e403a46.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -29,7 +29,7 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/posts/e403a46.html</loc>
+    <loc>https://www.l2xy.com/posts/96555fb2.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -47,7 +47,7 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/posts/30268d74.html</loc>
+    <loc>https://www.l2xy.com/posts/f71a6538.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -65,15 +65,6 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/posts/f71a6538.html</loc>
-    
-    <lastmod>2023-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.l2xy.com/posts/43d00a99.html</loc>
     
     <lastmod>2023-03-19</lastmod>
@@ -83,7 +74,7 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/categories/index.html</loc>
+    <loc>https://www.l2xy.com/posts/30268d74.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -93,6 +84,15 @@
   
   <url>
     <loc>https://www.l2xy.com/about/index.html</loc>
+    
+    <lastmod>2023-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.l2xy.com/categories/index.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -191,6 +191,15 @@
   </url>
   
   <url>
+    <loc>https://www.l2xy.com/posts/21919295.html</loc>
+    
+    <lastmod>2023-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.l2xy.com/posts/6d929828.html</loc>
     
     <lastmod>2023-03-19</lastmod>
@@ -201,15 +210,6 @@
   
   <url>
     <loc>https://www.l2xy.com/posts/663a091e.html</loc>
-    
-    <lastmod>2023-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.l2xy.com/posts/21919295.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/posts/133182d1.html</loc>
+    <loc>https://www.l2xy.com/posts/59b529b7.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/posts/59b529b7.html</loc>
+    <loc>https://www.l2xy.com/posts/133182d1.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -264,15 +264,6 @@
   
   <url>
     <loc>https://www.l2xy.com/posts/78525829.html</loc>
-    
-    <lastmod>2023-03-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.l2xy.com/posts/e4d19241.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -308,7 +299,7 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/posts/6b30c31b.html</loc>
+    <loc>https://www.l2xy.com/posts/e4d19241.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -318,6 +309,15 @@
   
   <url>
     <loc>https://www.l2xy.com/posts/b17a8184.html</loc>
+    
+    <lastmod>2023-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.l2xy.com/posts/6b30c31b.html</loc>
     
     <lastmod>2023-03-19</lastmod>
     
@@ -386,13 +386,6 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/tags/%E7%BC%96%E8%AF%91/</loc>
-    <lastmod>2023-03-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2023-03-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -415,6 +408,13 @@
   
   <url>
     <loc>https://www.l2xy.com/tags/Homebrew/</loc>
+    <lastmod>2023-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.l2xy.com/tags/%E7%BC%96%E8%AF%91/</loc>
     <lastmod>2023-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -449,6 +449,13 @@
   </url>
   
   <url>
+    <loc>https://www.l2xy.com/tags/Supervisor/</loc>
+    <lastmod>2023-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.l2xy.com/tags/Redis/</loc>
     <lastmod>2023-03-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -471,13 +478,6 @@
   
   <url>
     <loc>https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2023-03-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.l2xy.com/tags/Supervisor/</loc>
     <lastmod>2023-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -528,20 +528,6 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/</loc>
-    <lastmod>2023-03-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2023-03-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.l2xy.com/categories/MacOS/</loc>
     <lastmod>2023-03-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -550,6 +536,20 @@
   
   <url>
     <loc>https://www.l2xy.com/categories/MySQL/</loc>
+    <lastmod>2023-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.l2xy.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/</loc>
+    <lastmod>2023-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.l2xy.com/categories/Linux/</loc>
     <lastmod>2023-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -570,7 +570,7 @@
   </url>
   
   <url>
-    <loc>https://www.l2xy.com/categories/Linux/</loc>
+    <loc>https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2023-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
