@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>托马斯 の 博客</title>
+  
+  <subtitle>托马斯 の 博客</subtitle>
+  <link href="https://www.l2xy.com/atom.xml" rel="self"/>
+  
+  <link href="https://www.l2xy.com/"/>
+  <updated>2023-03-19T04:07:21.448Z</updated>
+  <id>https://www.l2xy.com/</id>
+  
+  <author>
+    <name>Thomas</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计数排序</title>
+    <link href="https://www.l2xy.com/posts/cb625b07.html"/>
+    <id>https://www.l2xy.com/posts/cb625b07.html</id>
+    <published>2022-05-26T13:03:02.000Z</published>
+    <updated>2023-03-19T04:07:21.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;Am4tQ&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;计数排序&quot;&gt;&lt;a href=&quot;#计数排序&quot; class=&quot;headerlink&quot; title=&quot;计数排序&quot;&gt;&lt;/a&gt;计数排序&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;计数排序(Counting</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>堆排序</title>
+    <link href="https://www.l2xy.com/posts/c2a5fdc5.html"/>
+    <id>https://www.l2xy.com/posts/c2a5fdc5.html</id>
+    <published>2022-05-14T12:26:48.000Z</published>
+    <updated>2023-03-19T04:07:21.446Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;FU31z&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;堆排序&quot;&gt;&lt;a href=&quot;#堆排序&quot; class=&quot;headerlink&quot; title=&quot;堆排序&quot;&gt;&lt;/a&gt;堆排序&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;堆排序(Heapsort)&lt;/strong&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>桶排序</title>
+    <link href="https://www.l2xy.com/posts/9fe164cc.html"/>
+    <id>https://www.l2xy.com/posts/9fe164cc.html</id>
+    <published>2022-05-10T12:08:01.000Z</published>
+    <updated>2023-03-19T04:07:21.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;xAPiy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;桶排序&quot;&gt;&lt;a href=&quot;#桶排序&quot; class=&quot;headerlink&quot; title=&quot;桶排序&quot;&gt;&lt;/a&gt;桶排序&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;桶排序(Bucket</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快速排序</title>
+    <link href="https://www.l2xy.com/posts/ff8068c0.html"/>
+    <id>https://www.l2xy.com/posts/ff8068c0.html</id>
+    <published>2022-05-06T13:15:23.000Z</published>
+    <updated>2023-03-19T04:07:21.446Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;wy3W5&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>希尔排序</title>
+    <link href="https://www.l2xy.com/posts/1ac49179.html"/>
+    <id>https://www.l2xy.com/posts/1ac49179.html</id>
+    <published>2022-05-02T12:33:56.000Z</published>
+    <updated>2023-03-19T04:07:21.446Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;希尔排序(Shell</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>归并排序</title>
+    <link href="https://www.l2xy.com/posts/1599bffe.html"/>
+    <id>https://www.l2xy.com/posts/1599bffe.html</id>
+    <published>2022-04-29T12:45:21.000Z</published>
+    <updated>2023-03-19T04:07:21.446Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;Abrkl&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot; title=&quot;实现原理&quot;&gt;&lt;/a&gt;实现原理&lt;/h2&gt;&lt;p&gt;今天介绍比前面三种排序算法性能更好的排序算法 ——</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>选择排序</title>
+    <link href="https://www.l2xy.com/posts/43d00a99.html"/>
+    <id>https://www.l2xy.com/posts/43d00a99.html</id>
+    <published>2022-04-26T12:22:31.000Z</published>
+    <updated>2023-03-19T04:07:21.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;RLmhH&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>插入排序</title>
+    <link href="https://www.l2xy.com/posts/96555fb2.html"/>
+    <id>https://www.l2xy.com/posts/96555fb2.html</id>
+    <published>2022-04-22T11:36:22.000Z</published>
+    <updated>2023-03-19T04:07:21.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;mRQQ0&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>冒泡排序</title>
+    <link href="https://www.l2xy.com/posts/14e6f1eb.html"/>
+    <id>https://www.l2xy.com/posts/14e6f1eb.html</id>
+    <published>2022-04-18T11:23:45.000Z</published>
+    <updated>2023-03-19T04:07:21.445Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;要给大家介绍的是&lt;strong&gt;基于选择&lt;/strong&gt;的排序算法，常见&lt;strong&gt;基于选择&lt;/strong&gt;的排序算法有&lt;strong&gt;冒泡排序&lt;/strong&gt;、&lt;strong&gt;插入排序&lt;/strong&gt;、&lt;strong&gt;选择排序&lt;/strong&gt;、&lt;strong</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>八种排序算法的稳定性分析</title>
+    <link href="https://www.l2xy.com/posts/124e81d.html"/>
+    <id>https://www.l2xy.com/posts/124e81d.html</id>
+    <published>2022-04-16T13:58:54.000Z</published>
+    <updated>2023-03-19T04:07:21.445Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;TIPs&lt;/strong&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个算法稳定是指，如果A=B，A在B前面，在进行排序算法后，仍然保持A在B前面。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;算法分类&lt;/strong&gt;：&lt;br&gt;&lt;br&gt;常见</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>排序算法场景概念解读</title>
+    <link href="https://www.l2xy.com/posts/329e504d.html"/>
+    <id>https://www.l2xy.com/posts/329e504d.html</id>
+    <published>2022-04-06T14:16:00.000Z</published>
+    <updated>2023-03-19T04:07:21.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;什么是稳定排序、原地排序、时间复杂度、空间复杂度：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;稳定排序：如果 a 原本在 b 的前面，且 a == b，排序之后 a 仍然在 b 的前面，则为稳定排序。&lt;/li&gt;
+&lt;li&gt;非稳定排序：如果 a 原本在 b</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go跨平台编译(交叉编译)</title>
+    <link href="https://www.l2xy.com/posts/e4d19241.html"/>
+    <id>https://www.l2xy.com/posts/e4d19241.html</id>
+    <published>2022-03-25T13:12:21.000Z</published>
+    <updated>2023-03-19T04:07:21.433Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;flj2V&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;跨平台编译&quot;&gt;&lt;a href=&quot;#跨平台编译&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go入门基础" scheme="https://www.l2xy.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="其他" scheme="https://www.l2xy.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="Go入门基础" scheme="https://www.l2xy.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="编译" scheme="https://www.l2xy.com/tags/%E7%BC%96%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go-内置类型和内置函数</title>
+    <link href="https://www.l2xy.com/posts/4312b66a.html"/>
+    <id>https://www.l2xy.com/posts/4312b66a.html</id>
+    <published>2022-03-20T11:36:11.000Z</published>
+    <updated>2023-03-19T04:07:21.433Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;IZWUv&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-内置类型&quot;&gt;&lt;a href=&quot;#1-内置类型&quot; class=&quot;headerlink&quot; title=&quot;1. 内置类型&quot;&gt;&lt;/a&gt;1. 内置类型&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Go入门基础" scheme="https://www.l2xy.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="其他" scheme="https://www.l2xy.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="Go入门基础" scheme="https://www.l2xy.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go-init函数和mian函数</title>
+    <link href="https://www.l2xy.com/posts/78525829.html"/>
+    <id>https://www.l2xy.com/posts/78525829.html</id>
+    <published>2022-03-16T12:25:47.000Z</published>
+    <updated>2023-03-19T04:07:21.433Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;dscSF&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;init函数&quot;&gt;&lt;a href=&quot;#init函数&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go入门基础" scheme="https://www.l2xy.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="其他" scheme="https://www.l2xy.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="Go入门基础" scheme="https://www.l2xy.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go实现单链表</title>
+    <link href="https://www.l2xy.com/posts/570a3f11.html"/>
+    <id>https://www.l2xy.com/posts/570a3f11.html</id>
+    <published>2022-03-10T14:16:00.000Z</published>
+    <updated>2023-03-19T04:07:21.433Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;单链表&quot;&gt;&lt;a href=&quot;#单链表&quot; class=&quot;headerlink&quot; title=&quot;单链表&quot;&gt;&lt;/a&gt;单链表&lt;/h3&gt;&lt;p&gt;NNode: 包含一个数据域，一个指针域（指向下一个节点）&lt;br&gt;LList : 包含头指针</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="数据结构" scheme="https://www.l2xy.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="数据结构" scheme="https://www.l2xy.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数学基础</title>
+    <link href="https://www.l2xy.com/posts/e403a46.html"/>
+    <id>https://www.l2xy.com/posts/e403a46.html</id>
+    <published>2022-03-08T13:35:50.000Z</published>
+    <updated>2023-03-19T04:07:21.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;学习数据结构，需要具备以下数学基础知识，这里只是简单提及一些公式和原理，具体的内容和深入学习请参考《高等数学》《离散数学》《数论》相关知识。&lt;/p&gt;
+&lt;p&gt;&lt;a name=&quot;zi9Lw&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1-指数&quot;&gt;&lt;a href=&quot;#1-指数&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="计算机基础" scheme="https://www.l2xy.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="计算机基础" scheme="https://www.l2xy.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="数学基础" scheme="https://www.l2xy.com/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计算机体系</title>
+    <link href="https://www.l2xy.com/posts/30268d74.html"/>
+    <id>https://www.l2xy.com/posts/30268d74.html</id>
+    <published>2022-03-05T16:52:17.000Z</published>
+    <updated>2023-03-19T04:07:21.448Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="计算机基础" scheme="https://www.l2xy.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+    
+    <category term="计算机基础" scheme="https://www.l2xy.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker-搭建Jenkins服务</title>
+    <link href="https://www.l2xy.com/posts/133182d1.html"/>
+    <id>https://www.l2xy.com/posts/133182d1.html</id>
+    <published>2021-09-15T16:48:33.000Z</published>
+    <updated>2023-03-19T04:07:21.433Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;自动化部署（持续集成 / CI + 持续交付 / CD）不仅可以提升开发效率，让程序员更专注产品与业务的开发，还可以节省很多运维成本以及提升运维效率。其中，Jenkins 是自动化部署中最流行的工具，尤其是 Docker+Jenkins</summary>
+        
+      
+    
+    
+    
+    <category term="Docker" scheme="https://www.l2xy.com/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://www.l2xy.com/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker 常见命令</title>
+    <link href="https://www.l2xy.com/posts/59b529b7.html"/>
+    <id>https://www.l2xy.com/posts/59b529b7.html</id>
+    <published>2021-09-13T01:14:20.000Z</published>
+    <updated>2023-03-19T04:07:21.433Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;docker-常见命令&quot;&gt;&lt;a href=&quot;#docker-常见命令&quot; class=&quot;headerlink&quot; title=&quot;docker 常见命令&quot;&gt;&lt;/a&gt;docker 常见命令&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;查看版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure</summary>
+        
+      
+    
+    
+    
+    <category term="Docker" scheme="https://www.l2xy.com/categories/Docker/"/>
+    
+    
+    <category term="CentOS" scheme="https://www.l2xy.com/tags/CentOS/"/>
+    
+    <category term="Docker" scheme="https://www.l2xy.com/tags/Docker/"/>
+    
+    <category term="Linux" scheme="https://www.l2xy.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker 环境搭建</title>
+    <link href="https://www.l2xy.com/posts/a8b7793d.html"/>
+    <id>https://www.l2xy.com/posts/a8b7793d.html</id>
+    <published>2021-09-02T16:10:35.000Z</published>
+    <updated>2023-03-19T04:07:21.433Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Docker-环境搭建&quot;&gt;&lt;a href=&quot;#Docker-环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Docker 环境搭建&quot;&gt;&lt;/a&gt;Docker 环境搭建&lt;/h1&gt;&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="Docker" scheme="https://www.l2xy.com/categories/Docker/"/>
+    
+    
+    <category term="CentOS" scheme="https://www.l2xy.com/tags/CentOS/"/>
+    
+    <category term="Docker" scheme="https://www.l2xy.com/tags/Docker/"/>
+    
+    <category term="Linux" scheme="https://www.l2xy.com/tags/Linux/"/>
+    
+  </entry>
+  
+</feed>
