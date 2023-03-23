@@ -19,7 +19,7 @@
     <meta name="description" content="聚簇索引与非聚簇索引 1. 聚簇索引(主键索引)InnoDB会自动为主键id创建一棵名为主键索引（又叫做聚簇索引）的B+树，这个B+树的最重要的特点就是叶子节点包含了完整的用户记录，大概长这个样子。主键索引的B+树的每一个节点内的记录都是按照主键值由小到大的顺序，采用单向链表的方式进行连接的。  2. 非聚簇索引(非主键索引、二级索引)InnoDB存储引擎会根据搜索条件在该二级索引的叶子节点中找到">
 <meta property="og:type" content="article">
 <meta property="og:title" content="聚簇索引和非聚簇索引">
-<meta property="og:url" content="http://www.l2xy.com/posts/f71a6538.html">
+<meta property="og:url" content="http://www.chendujin.com/posts/f71a6538.html">
 <meta property="og:site_name" content="托马斯 の 博客">
 <meta property="og:description" content="聚簇索引与非聚簇索引 1. 聚簇索引(主键索引)InnoDB会自动为主键id创建一棵名为主键索引（又叫做聚簇索引）的B+树，这个B+树的最重要的特点就是叶子节点包含了完整的用户记录，大概长这个样子。主键索引的B+树的每一个节点内的记录都是按照主键值由小到大的顺序，采用单向链表的方式进行连接的。  2. 非聚簇索引(非主键索引、二级索引)InnoDB存储引擎会根据搜索条件在该二级索引的叶子节点中找到">
 <meta property="og:locale" content="zh_CN">
@@ -89,7 +89,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"www.l2xy.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading/loading3.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qCMJVUHYsbbH9Q1lTT9GgUAt-gzGzoHsz","app_key":"ur8rtnOJICggyXqctm8jEY3L","server_url":"https://qcmjvuhy.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"www.chendujin.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading/loading3.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qCMJVUHYsbbH9Q1lTT9GgUAt-gzGzoHsz","app_key":"ur8rtnOJICggyXqctm8jEY3L","server_url":"https://qcmjvuhy.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -491,7 +491,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>聚簇索引和非聚簇索引</div>
-      <div>http://www.l2xy.com/posts/f71a6538.html</div>
+      <div>http://www.chendujin.com/posts/f71a6538.html</div>
     </div>
     <div class="license-meta">
       
