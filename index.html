@@ -349,6 +349,74 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/posts/96a822e5.html" target="_self">
+          Golang 的 defer 关键字使用注意事项
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/posts/96a822e5.html" target="_self">
+        <div>
+          Golang 提供了 defer 关键字，用于函数退出前执行收尾工作，基本的使用方法就不再赘述了。总结了一些可能踩坑的地方。 defer 执行顺序123456789101112131415161718192021package mainimport "fmt"func TestFunc() {    defer func() {        fmt.Println("A")    }()
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-23 21:04" pubdate>
+              2022-08-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" class="category-chain-item">Go入门基础</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/">#Go入门基础</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/posts/cb625b07.html" target="_self">
           计数排序
         </a>
@@ -1104,76 +1172,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">#数据结构与算法</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/posts/e4d19241.html" target="_self">
-          Go跨平台编译(交叉编译)
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/posts/e4d19241.html" target="_self">
-        <div>
-          跨平台编译跨平台编译，也叫交叉编译，我可以在win平台上，编译成linux平台可执行的文件。这也是Go备受青睐的原因，像java,python,php等语言，我们开发一般是在win平台上开发，部署的时候在linux上部署，在处理第三方依赖是比较麻烦，不仅开发累，运维也累，虽然现在有docker解决了这个痛点，但是应该还是没原生来的舒服。如果使用Go的话，不管是什么第三方依赖，最终只会打包成一个可
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-03-25 21:12" pubdate>
-              2022-03-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" class="category-chain-item">Go入门基础</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/" class="category-chain-item">其他</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/">#Go入门基础</a>
-            
-              <a href="/tags/%E7%BC%96%E8%AF%91/">#编译</a>
             
           </div>
         

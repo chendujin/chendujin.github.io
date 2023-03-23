@@ -6,7 +6,7 @@
   <link href="http://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="http://www.chendujin.com/"/>
-  <updated>2023-03-19T04:07:21.448Z</updated>
+  <updated>2023-03-23T13:20:53.505Z</updated>
   <id>http://www.chendujin.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Golang 的 defer 关键字使用注意事项</title>
+    <link href="http://www.chendujin.com/posts/96a822e5.html"/>
+    <id>http://www.chendujin.com/posts/96a822e5.html</id>
+    <published>2022-08-23T13:04:48.000Z</published>
+    <updated>2023-03-23T13:20:53.505Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Golang 提供了 &lt;code&gt;defer&lt;/code&gt; 关键字，用于函数退出前执行收尾工作，基本的使用方法就不再赘述了。总结了一些可能踩坑的地方。&lt;/p&gt;
+&lt;h2 id=&quot;defer-执行顺序&quot;&gt;&lt;a href=&quot;#defer-执行顺序&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go入门基础" scheme="http://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="其他" scheme="http://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="Go入门基础" scheme="http://www.chendujin.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>计数排序</title>
@@ -566,40 +594,11 @@
     <category term="Docker" scheme="http://www.chendujin.com/categories/Docker/"/>
     
     
-    <category term="CentOS" scheme="http://www.chendujin.com/tags/CentOS/"/>
-    
     <category term="Docker" scheme="http://www.chendujin.com/tags/Docker/"/>
     
     <category term="Linux" scheme="http://www.chendujin.com/tags/Linux/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Docker 环境搭建</title>
-    <link href="http://www.chendujin.com/posts/a8b7793d.html"/>
-    <id>http://www.chendujin.com/posts/a8b7793d.html</id>
-    <published>2021-09-02T16:10:35.000Z</published>
-    <updated>2023-03-19T04:07:21.433Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Docker-环境搭建&quot;&gt;&lt;a href=&quot;#Docker-环境搭建&quot; class=&quot;headerlink&quot; title=&quot;Docker 环境搭建&quot;&gt;&lt;/a&gt;Docker 环境搭建&lt;/h1&gt;&lt;h2</summary>
-        
-      
-    
-    
-    
-    <category term="Docker" scheme="http://www.chendujin.com/categories/Docker/"/>
-    
-    
     <category term="CentOS" scheme="http://www.chendujin.com/tags/CentOS/"/>
-    
-    <category term="Docker" scheme="http://www.chendujin.com/tags/Docker/"/>
-    
-    <category term="Linux" scheme="http://www.chendujin.com/tags/Linux/"/>
     
   </entry>
   

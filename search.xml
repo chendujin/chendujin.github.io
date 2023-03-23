@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Golang 的 defer 关键字使用注意事项</title>
+      <link href="/posts/96a822e5.html"/>
+      <url>/posts/96a822e5.html</url>
+      
+        <content type="html"><![CDATA[<p>Golang 提供了 <code>defer</code> 关键字，用于函数退出前执行收尾工作，基本的使用方法就不再赘述了。总结了一些可能踩坑的地方。</p><h2 id="defer-执行顺序"><a href="#defer-执行顺序" class="headerlink" title="defer 执行顺序"></a>defer 执行顺序</h2><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> <span class="hljs-string">"fmt"</span><br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">TestFunc</span><span class="hljs-params">()</span></span> {<br>    <span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {<br>        fmt.Println(<span class="hljs-string">"A"</span>)<br>    }()<br><br>    <span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {<br>        fmt.Println(<span class="hljs-string">"B"</span>)<br>    }()<br><br>    <span class="hljs-keyword">defer</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {<br>        fmt.Println(<span class="hljs-string">"C"</span>)<br>    }()<br>}<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {<br>TestFunc()<br>}<br></code></pre></td></tr></tbody></table></figure><p>执行结果是：</p><figure class="highlight go"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs go">C<br>B<br>A<br></code></pre></td></tr></tbody></table></figure><p>即 defer 执行先后顺序与代码顺序是相反的，是<strong>后进先出</strong>的顺序。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Go入门基础 </category>
+          
+          <category> 其他 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Go入门基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>计数排序</title>
       <link href="/posts/cb625b07.html"/>
       <url>/posts/cb625b07.html</url>
@@ -526,11 +553,11 @@
       
         <tags>
             
-            <tag> CentOS </tag>
-            
             <tag> Docker </tag>
             
             <tag> Linux </tag>
+            
+            <tag> CentOS </tag>
             
         </tags>
       
@@ -555,11 +582,11 @@
       
         <tags>
             
-            <tag> CentOS </tag>
-            
             <tag> Docker </tag>
             
             <tag> Linux </tag>
+            
+            <tag> CentOS </tag>
             
         </tags>
       
