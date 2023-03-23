@@ -6,7 +6,7 @@
   <link href="http://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="http://www.chendujin.com/"/>
-  <updated>2023-03-23T13:20:53.505Z</updated>
+  <updated>2023-03-23T14:04:25.529Z</updated>
   <id>http://www.chendujin.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://www.chendujin.com/posts/96a822e5.html"/>
     <id>http://www.chendujin.com/posts/96a822e5.html</id>
     <published>2022-08-23T13:04:48.000Z</published>
-    <updated>2023-03-23T13:20:53.505Z</updated>
+    <updated>2023-03-23T14:04:25.529Z</updated>
     
     
       
@@ -594,11 +594,11 @@
     <category term="Docker" scheme="http://www.chendujin.com/categories/Docker/"/>
     
     
+    <category term="CentOS" scheme="http://www.chendujin.com/tags/CentOS/"/>
+    
     <category term="Docker" scheme="http://www.chendujin.com/tags/Docker/"/>
     
     <category term="Linux" scheme="http://www.chendujin.com/tags/Linux/"/>
-    
-    <category term="CentOS" scheme="http://www.chendujin.com/tags/CentOS/"/>
     
   </entry>
   
