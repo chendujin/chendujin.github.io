@@ -717,9 +717,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Cache</tag>
+      
+      <tag>Redis</tag>
       
     </tags>
     
@@ -744,9 +744,9 @@
     
     <tags>
       
-      <tag>Redis</tag>
-      
       <tag>Cache</tag>
+      
+      <tag>Redis</tag>
       
       <tag>分布式集群</tag>
       
