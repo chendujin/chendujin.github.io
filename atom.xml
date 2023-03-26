@@ -6,7 +6,7 @@
   <link href="https://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="https://www.chendujin.com/"/>
-  <updated>2023-03-23T14:04:25.529Z</updated>
+  <updated>2023-03-26T02:21:51.800Z</updated>
   <id>https://www.chendujin.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>一文掌握MySQL日志</title>
+    <link href="https://www.chendujin.com/posts/b7b2c450.html"/>
+    <id>https://www.chendujin.com/posts/b7b2c450.html</id>
+    <published>2023-03-26T02:17:59.000Z</published>
+    <updated>2023-03-26T02:21:51.800Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在MySQL 中我们经常会接触到三个核心日志，它们分别是：binlog 、redo log、undo</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="https://www.chendujin.com/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="https://www.chendujin.com/tags/MySQL/"/>
+    
+    <category term="MySQL日志" scheme="https://www.chendujin.com/tags/MySQL%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
   
   <entry>
     <title>Golang 的 defer 关键字使用注意事项</title>
@@ -567,38 +594,6 @@
     
     
     <category term="Docker" scheme="https://www.chendujin.com/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker 常见命令</title>
-    <link href="https://www.chendujin.com/posts/59b529b7.html"/>
-    <id>https://www.chendujin.com/posts/59b529b7.html</id>
-    <published>2021-09-13T01:14:20.000Z</published>
-    <updated>2023-03-19T04:07:21.433Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;docker-常见命令&quot;&gt;&lt;a href=&quot;#docker-常见命令&quot; class=&quot;headerlink&quot; title=&quot;docker 常见命令&quot;&gt;&lt;/a&gt;docker 常见命令&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;查看版本&lt;/li&gt;
-&lt;/ul&gt;
-&lt;figure</summary>
-        
-      
-    
-    
-    
-    <category term="Docker" scheme="https://www.chendujin.com/categories/Docker/"/>
-    
-    
-    <category term="CentOS" scheme="https://www.chendujin.com/tags/CentOS/"/>
-    
-    <category term="Docker" scheme="https://www.chendujin.com/tags/Docker/"/>
-    
-    <category term="Linux" scheme="https://www.chendujin.com/tags/Linux/"/>
     
   </entry>
   
