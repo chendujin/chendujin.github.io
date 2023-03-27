@@ -16,19 +16,25 @@
   <meta name="author" content="Thomas">
   <meta name="keywords" content="技术博客 PHP Python Java Go Vue">
   
-    <meta name="description" content="MySQL 性能分析explain123456explain select * from users;-- 本意为显示警告信息。但是和 explain 一块儿使用，就会显示出优化后的 sql。需要注意使用顺序。（只能在 mysql cli 中才会有结果）show warnings;   最重要的 5 个字段是：id、type、key、rows、Extra   id： select 查询的序列号，包">
+    <meta name="description" content="一道场景设计题目：如何设计一个高并发系统。 如何理解高并发系统所谓设计高并发系统，就是设计一个系统，保证它整体可用的同时，能够处理很高的并发用户请求，能够承受很大的流量冲击。我们要设计高并发的系统，那就需要处理好一些常见的系统瓶颈问题，如内存不足、磁盘空间不足，连接数不够，网络宽带不够等等，以应对突发的流量洪峰。 1. 分而治之，横向扩展如果你只部署一个应用，只部署一台服务器，那抗住的流量请求是非">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MySQL 性能分析">
-<meta property="og:url" content="https://www.chendujin.com/posts/1e4459df.html">
+<meta property="og:title" content="高并发系统设计的15个方向">
+<meta property="og:url" content="https://www.chendujin.com/posts/3fece8a5.html">
 <meta property="og:site_name" content="托马斯 の 博客">
-<meta property="og:description" content="MySQL 性能分析explain123456explain select * from users;-- 本意为显示警告信息。但是和 explain 一块儿使用，就会显示出优化后的 sql。需要注意使用顺序。（只能在 mysql cli 中才会有结果）show warnings;   最重要的 5 个字段是：id、type、key、rows、Extra   id： select 查询的序列号，包">
+<meta property="og:description" content="一道场景设计题目：如何设计一个高并发系统。 如何理解高并发系统所谓设计高并发系统，就是设计一个系统，保证它整体可用的同时，能够处理很高的并发用户请求，能够承受很大的流量冲击。我们要设计高并发的系统，那就需要处理好一些常见的系统瓶颈问题，如内存不足、磁盘空间不足，连接数不够，网络宽带不够等等，以应对突发的流量洪峰。 1. 分而治之，横向扩展如果你只部署一个应用，只部署一台服务器，那抗住的流量请求是非">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-07-11T09:26:21.000Z">
-<meta property="article:modified_time" content="2023-03-19T04:07:21.443Z">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/system_design_img/system_design_01.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/system_design_img/system_design_02.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/system_design_img/system_design_03.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/system_design_img/system_design_04.jpeg">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/system_design_img/system_design_05.png">
+<meta property="article:published_time" content="2023-03-26T10:18:17.000Z">
+<meta property="article:modified_time" content="2023-03-26T10:38:50.511Z">
 <meta property="article:author" content="Thomas">
-<meta property="article:tag" content="MySQL">
-<meta property="article:tag" content="性能优化">
+<meta property="article:tag" content="系统架构">
+<meta property="article:tag" content="高并发">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.l2xy.com/post_img/system_design_img/system_design_01.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -36,7 +42,7 @@
   
      <!-- 一言 --> <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script> 
   
-  <title>MySQL 性能分析 - 托马斯 の 博客</title>
+  <title>高并发系统设计的15个方向 - 托马斯 の 博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -345,7 +351,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="MySQL 性能分析"></span>
+            <span id="subtitle" data-typed-text="高并发系统设计的15个方向"></span>
           
         </div>
 
@@ -356,8 +362,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-07-11 17:26" pubdate>
-          2021年7月11日 下午
+        <time datetime="2023-03-26 18:18" pubdate>
+          2023年3月26日 晚上
         </time>
       </span>
     
@@ -368,7 +374,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          3.7k 字
         
       </span>
     
@@ -379,7 +385,7 @@
         
         
         
-          46 分钟
+          32 分钟
         
       </span>
     
@@ -425,202 +431,53 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">MySQL 性能分析</h1>
+            <h1 style="display: none">高并发系统设计的15个方向</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="MySQL-性能分析"><a href="#MySQL-性能分析" class="headerlink" title="MySQL 性能分析"></a>MySQL 性能分析</h1><h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br>explain select * from users;<br><br>-- 本意为显示警告信息。但是和 explain 一块儿使用，就会显示出优化后的 sql。需要注意使用顺序。（只能在 mysql cli 中才会有结果）<br>show warnings;<br><br></code></pre></td></tr></tbody></table></figure>
-
+                <p>一道场景设计题目：<strong>如何设计一个高并发系统</strong>。<br><img src="https://cdn.l2xy.com/post_img/system_design_img/system_design_01.png" srcset="/img/loading/loading3.gif" lazyload></p>
+<h1 id="如何理解高并发系统"><a href="#如何理解高并发系统" class="headerlink" title="如何理解高并发系统"></a>如何理解高并发系统</h1><p>所谓设计<strong>高并发</strong>系统，就是设计一个系统，保证它<strong>整体可用</strong>的同时，能够<strong>处理很高的并发用户请求</strong>，能够承受<strong>很大的流量冲击</strong>。<br>我们要设计高并发的系统，那就需要处理好一些常见的系统瓶颈问题，如<strong>内存不足、磁盘空间不足，连接数不够，网络宽带不够</strong>等等，以应对突发的流量洪峰。</p>
+<h1 id="1-分而治之，横向扩展"><a href="#1-分而治之，横向扩展" class="headerlink" title="1. 分而治之，横向扩展"></a>1. 分而治之，横向扩展</h1><p>如果你<strong>只部署一个应用，只部署一台服务器</strong>，那抗住的流量请求是非常有限的。并且，单体的应用，有单点的风险，如果它挂了，那服务就不可用了。<br>因此，设计一个高并发系统，我们可以<strong>分而治之，横向扩展</strong>。也就是说，采用分布式部署的方式，部署多台服务器，把流量分流开，让每个服务器都承担一部分的并发和流量，提升<strong>整体系统的并发能力</strong>。</p>
+<h1 id="2-微服务拆分（系统拆分）"><a href="#2-微服务拆分（系统拆分）" class="headerlink" title="2. 微服务拆分（系统拆分）"></a>2. 微服务拆分（系统拆分）</h1><p>要提高系统的吞吐，提高系统的处理并发请求的能力。除了采用<strong>分布式部署的方式</strong>外，还可以做<strong>微服务拆分</strong>，这样就可以达到分摊请求流量的目的，提高了并发能力。<br>所谓的<strong>微服务拆分</strong>，其实就是把一个单体的应用，按功能单一性，拆分为多个服务模块。<strong>比如一个电商系统，拆分为用户系统、订单系统、商品系统等等</strong>。<br><img src="https://cdn.l2xy.com/post_img/system_design_img/system_design_02.png" srcset="/img/loading/loading3.gif" lazyload></p>
+<h1 id="3-分库分表"><a href="#3-分库分表" class="headerlink" title="3. 分库分表"></a>3. 分库分表</h1><p>当业务量暴增的话，MySQL单机<strong>磁盘容量会撑爆</strong>。并且，我们知道数据库连接数是有限的。<strong>在高并发的场景下</strong>，大量请求访问数据库，MySQL单机是扛不住的！高并发场景下，会出现too many connections报错。<br>所以高并发的系统，<strong>需要考虑拆分为多个数据库，来抗住高并发的毒打</strong>。而假如你的单表数据量非常大，存储和查询的性能就会遇到瓶颈了，如果你做了很多优化之后还是无法提升效率的时候，就需要考虑做<strong>分表</strong>了。一般千万级别数据量，就需要<strong>分表</strong>，每个表的数据量少一点，提升SQL查询性能。<br>当面试官问要求你设计一个高并发系统的时候，一般都要说到<strong>分库分表</strong>这个点。</p>
+<h1 id="4-池化技术"><a href="#4-池化技术" class="headerlink" title="4. 池化技术"></a>4. 池化技术</h1><p>在高并发的场景下，<strong>数据库连接数</strong>可能成为瓶颈，因为连接数是有限的。<br>我们的请求调用数据库时，都会先获取数据库的连接，然后依靠这个连接来查询数据，搞完收工，最后关闭连接，释放资源。如果我们不用数据库连接池的话，每次执行SQL，都要创建连接和销毁连接，这就会导致每个查询请求都变得更慢了，相应的，系统处理用户请求的能力就降低了。<br>因此，需要使用池化技术，即<strong>数据库连接池、HTTP 连接池、Redis 连接池</strong>等等。使用数据库连接池，可以避免每次查询都新建连接，减少不必要的资源开销，通过复用连接池，<strong>提高系统处理高并发请求的能力</strong>。<br>同理，我们使用线程池，也能<strong>让任务并行处理，更高效地完成任务</strong>。</p>
+<h1 id="5-主从分离"><a href="#5-主从分离" class="headerlink" title="5. 主从分离"></a>5. 主从分离</h1><p>通常来说，一台单机的MySQL服务器，可以支持500左右的TPS和10000左右的QPS，即单机支撑的<strong>请求访问是有限</strong>的。因此你做了分布式部署，部署了多台机器，部署了主数据库、从数据库。<br>但是，如果双十一搞活动，流量肯定会猛增的。如果所有的查询请求，都走主库的话，主库肯定扛不住，因为查询请求量是非常非常大的。因此一般都要求做<strong>主从分离</strong>，然后实时性要求不高的读请求，都去读从库，<strong>写的请求或者实时性要求高的请求，才走主库</strong>。这样就很好保护了主库，也提高了系统的吞吐。<br>当然，如果回答了主从分离，面试官可能扩展开问你<strong>主从复制原理，问你主从延迟问题</strong>等等，这块大家需要<strong>全方位复习好</strong>哈。</p>
+<h1 id="6-使用缓存"><a href="#6-使用缓存" class="headerlink" title="6. 使用缓存"></a>6. 使用缓存</h1><p>无论是操作系统，浏览器，还是一些复杂的中间件，你都可以看到缓存的影子。我们使用缓存，主要是提升系统接口的性能，这样高并发场景，你的系统就可以支持更多的用户同时访问。<br>常用的缓存包括：Redis缓存，JVM本地缓存，memcached等等。就拿Redis来说，它单机就能轻轻松松应对几万的并发，你读场景的业务，可以用缓存来抗高并发。<br>缓存虽然用得爽，但是要<strong>注意缓存使用的一些问题</strong>：</p>
+<ul>
+<li>缓存与数据库的一致性问题</li>
+<li>缓存雪崩</li>
+<li>缓存穿透</li>
+<li>缓存击穿</li>
+</ul>
+<h1 id="7-CDN，加速静态资源访问"><a href="#7-CDN，加速静态资源访问" class="headerlink" title="7. CDN，加速静态资源访问"></a>7. CDN，加速静态资源访问</h1><p>商品图片，icon等等静态资源，可以对页面做<strong>静态化处理，减少访问服务端的请求</strong>。如果用户分布在全国各地，有的在上海，有的在深圳，地域相差很远，网速也各不相同。为了让用户最快访问到页面，可以使用CDN。CDN可以让用户就近获取所需内容。<br>什么是CDN？<br><code>Content Delivery Network/Content Distribution Network</code>,翻译过来就是内容分发网络，它表示将静态资源分发到位于多个地理位置机房的服务器，可以做到数据就近访问，加速了静态资源的访问速度，因此让系统更好处理正常别的动态请求。</p>
+<h1 id="8-消息队列，削锋"><a href="#8-消息队列，削锋" class="headerlink" title="8. 消息队列，削锋"></a>8. 消息队列，削锋</h1><p>我们搞一些双十一、双十二等运营活动时，需要<strong>避免流量暴涨，打垮应用系统的风险</strong>。因此一般会引入消息队列，来应对<strong>高并发的场景</strong>。<br><img src="https://cdn.l2xy.com/post_img/system_design_img/system_design_03.png" srcset="/img/loading/loading3.gif" lazyload><br>假设你的应用系统每秒最多可以处理2k个请求，每秒却有5k的请求过来，可以引入消息队列，应用系统每秒从消息队列拉2k请求处理得了。<br>有些伙伴担心这样可能会出现<strong>消息积压</strong>的问题：</p>
+<ul>
+<li>首先，搞一些运营活动，不会每时每刻都那么多请求过来你的系统（<strong>除非有人恶意攻击</strong>），高峰期过去后，积压的请求可以慢慢处理；</li>
+<li>其次，如果消息队列长度超过最大数量，可以直接抛弃用户请求或跳转到错误页面；</li>
+</ul>
+<h1 id="9-ElasticSearch"><a href="#9-ElasticSearch" class="headerlink" title="9. ElasticSearch"></a>9. ElasticSearch</h1><p>Elasticsearch，大家都使用得比较多了吧，<strong>一般搜索功能都会用到它</strong>。它是一个分布式、高扩展、高实时的搜索与数据分析引擎，简称为ES。<br>我们在聊高并发，为啥聊到ES呢？因为ES可以扩容方便，天然支撑高并发。<strong>当数据量大的时候，不用动不动就加机器扩容，分库等等</strong>，可以考虑用ES来支持简单的查询搜索、统计类的操作。</p>
+<h1 id="10-降级熔断"><a href="#10-降级熔断" class="headerlink" title="10. 降级熔断"></a>10. 降级熔断</h1><p><strong>熔断降级</strong>是保护系统的一种手段。当前互联网系统一般都是分布式部署的。而分布式系统中偶尔会出现某个基础服务不可用，最终导致整个系统不可用的情况, 这种现象被称为<strong>服务雪崩效应</strong>。<br>比如分布式调用链路A-&gt;B-&gt;C….，下图所示：<br><img src="https://cdn.l2xy.com/post_img/system_design_img/system_design_04.jpeg" srcset="/img/loading/loading3.gif" lazyload></p>
 <blockquote>
-<p>最重要的 5 个字段是：id、type、key、rows、Extra</p>
+<p>如果服务C出现问题，比如是因为慢SQL导致调用缓慢，那将导致B也会延迟，从而A也会延迟。堵住的A请求会消耗占用系统的线程、IO、CPU等资源。当请求A的服务越来越多，占用计算机的资源也越来越多，最终会导致系统瓶颈出现，造成其他的请求同样不可用，最后导致业务系统崩溃。</p>
 </blockquote>
-<ul>
-<li><strong>id</strong>： select 查询的序列号，包含一组数字，表示查询中执行 select 子句或操作表的顺序</li>
-</ul>
-<ol>
-<li>id 相同，执行顺序由上至下</li>
-<li>id 不同，如果是子查询，id 的序号会递增，id 值越大优先级越高，越先被执行</li>
-<li>id 有相同也有不同的，id 值越大优先级越高越先被执行，id 值相同的按由上到下执行</li>
-</ol>
-<ul>
-<li><strong>select_type</strong>：查询的类型，主要是用于区别普通查询，联合查询，子查询等的复杂查询</li>
-</ul>
-<ol>
-<li>simple ： 简单的 select 查询，查询中不包含子查询或者 union</li>
-<li>primary ：查询中若包含任何复杂的子部份，最 外层查询则被标记为 primary</li>
-<li>subquery ： 在 select 或 where 列表中包含子查询</li>
-<li>derived ： 在 from 列表中包含的子查询被标记为 derived（衍生）MySQL 会递归执行这些子查询，把结果放在临时表里。</li>
-<li>union ： 若第二个 select 出现在 union 之后，则被标记为 union：若 union 包含在 from 子句的子查询中，外层 select 将被标记为： derived</li>
-<li>union result ： 从 union 表获取结果的 select</li>
-</ol>
-<ul>
-<li><strong>table</strong> ： 显示这一行的数据是关于哪张表的</li>
-<li><strong>type</strong> ： 访问类型排序<ul>
-<li>常用的从最好到最差依次是，system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</li>
-<li>完整的从最好到最差依次是 system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; ALL</li>
-<li>一般来说， 得保证查询至少达到 range 级别，最好能达到 ref 级别</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>system ：表只有一行记录（等于系统表），这是 const 类型的特例，平时不会出现，这个也可以忽略不计</li>
-<li>const ： 表示通过索引一次就找到了，const 用于比较 primary key 或者 unique 索引。因为只匹配一行数据，所以很快。如将主键置于 where 列表中，MySQL 就能将该查询转换为一个常量</li>
-<li>eq_ref : 唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描。</li>
-<li>ref ： 非唯一性索引扫描，返回匹配某个单独值的所有行，本质上也是一种索引访问，它返回所有匹配某个单独值的行，然而，它可能会找到多个符合条件的行，所以他应该属于查找和扫描的混合体。</li>
-<li>range ：只检索给定范围的行，使用一个索引来选择行，key 列显示使用了哪个索引，一般就是在你的 where 语句中出现了 between 、&lt; 、&gt; 、in 等的查询。这种范围扫描索引扫描比全表扫描要好，因为它只需要开始于索引的某一点，而结束于另一点，不用扫描全部索引</li>
-<li>index ： Full Index Scan，Index 与 ALL 区别为 index 类型只遍历索引树。这通常比 ALL 快，因为索引文件通常比数据文件小。（也就是说虽然 all 和 index 都是读全表，但 index 是从索引中读取的，而 all 是从硬盘中读的）</li>
-<li>all ： Full Table Scan，将遍历全表以找到匹配的行</li>
-</ol>
-<p><strong>一般来说，得保证查询至少达到 range 级别，最好能达到 ref</strong></p>
-<ul>
-<li><strong>possible_keys</strong> ：显示可能应用在这张表中的索引，一个或多个。查询涉及到的字段上若存在索引，则该索引将被列出，<strong>但不一定被查询实际使用</strong></li>
-<li><strong>key</strong> ： 实际使用的索引。如果为 null，则没有使用索引。查询中若使用了覆盖索引，则该索引仅出现在 key 列表中。</li>
-<li><strong>key_len</strong> : 表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度。在不损失精确性的情况下，长度越短越好。key_len 显示的值为索引字段的最大可能长度，并非实际使用长度，即 key_len 是根据表定义计算而得，不是通过表内检索出的</li>
-<li><strong>ref</strong> ： 显示索引的哪一列被使用了，如果可能的话，是一个常数。哪些列或常量被用于查找索引列上的值</li>
-<li><strong>rows</strong> ：根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数（行数越小越好）</li>
-<li><strong>Extra</strong> ：包含不适合在其它列中显示但十分重要的额外信息</li>
-</ul>
-<ol>
-<li>Using filesort ： 说明 mysql 会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。MySQL 中无法利用索引完成的排序操作称为“文件排序”。<strong>九死一生了，效率比较差</strong></li>
-<li>Using temporary ：使用了临时表保存中间结果，MySQL 在对查询结果排序时使用临时表。常用于排序 order by 和分组查询 group by。<strong>十死无生，效率最差！</strong></li>
-<li>Using index ： 表示相应的 select 操作中使用了覆盖索引（Covering index），避免访问了表的数据行，效率不错！如果同时出现 using where ，表明索引被用来执行索引键值的查找；如果没有同时出现 using where ，表明索引用来读取数据而非执行查找动作。</li>
-<li>Using where ：表明使用了 where 过滤</li>
-<li>using join buffer ：使用了连接缓存</li>
-<li>impossible where ： where 子句的值总是 false，不能用来获取任何元组</li>
-<li>select tables optimized away ：在没有 group by 子句的情况下，基于索引优化 min/max 操作或者对于 MyISAM 存储引擎优化 count(*) 操作，不必等到执行阶段再进行计算，查询执行计划生成的阶段即完成优化。</li>
-<li>distinct ：优化 distinct 操作，在找到第一匹配的元组后即停止找同样值的动作</li>
-</ol>
-<h2 id="查询截取分析"><a href="#查询截取分析" class="headerlink" title="查询截取分析"></a>查询截取分析</h2><ul>
-<li>通俗来讲</li>
-</ul>
-<ol>
-<li>观察，至少跑 1 天 ，看看生产的慢 sql 情况。</li>
-<li>开启慢查询日志，设置阈值，比如超过 5 秒钟的就是慢 sql，并将它抓取出来。</li>
-<li>explain + 慢 sql 分析</li>
-<li>show profile</li>
-<li>运维经理或者 DBA，进行 sql 数据库服务器的参数调优。</li>
-</ol>
-<ul>
-<li>学术说法</li>
-</ul>
-<ol>
-<li>慢查询的开启并捕获</li>
-<li>explain + 慢 sql 分析</li>
-<li>show profile 查询 sql 在 mysql 服务器里面的执行细节和生命周期情况</li>
-<li>sql 数据库服务器的参数调优</li>
-</ol>
-<h3 id="提高-order-by-的速度"><a href="#提高-order-by-的速度" class="headerlink" title="提高 order by 的速度"></a>提高 order by 的速度</h3><ol>
-<li>order by 时，select * 是一个大忌，只查询需要的字段，这点非常重要。在这里的影响是：</li>
-</ol>
-<ul>
-<li>当查询的字段大小总和小于 max_length_for_sort_data 而且排序字段不是 text|blob 类型时，会用改进后的算法——单路排序，否则用老算法——多路排序。</li>
-<li>两种算法的数据都有可能超出 sort_buffer 的容量，超出之后，会创建 tmp 文件进行合并排序，导致多次 I/O，但是用单路排序算法的风险会更大一些，所以要提高 sort_buffer_size</li>
-</ul>
-<ol start="2">
-<li>尝试提高 sort_buffer_size 不管用哪种算法，提高这个参数都会提高效率，当然，要根据系统的能力去提高，因为这个参数是针对每个进程的</li>
-<li>尝试提高 max_length_for_sort_data 提高这个参数，会增加用改进算法的概率，但是如果设的太高，数据总容量超出 sort_buffer_size 的概率就增大，明显症状是高的磁盘 I/O 活动和低的处理器使用率。</li>
-</ol>
-<h3 id="为排序使用索引"><a href="#为排序使用索引" class="headerlink" title="为排序使用索引"></a>为排序使用索引</h3><ul>
-<li>MySQL 两种排序方式：文件排序或扫描有序索引排序</li>
-<li>MySQL 能为排序与查询使用相同的索引</li>
-</ul>
-<p>KEY a_b_c (a,b,c)</p>
-<ol>
-<li>order by 能使用索引最左前缀<br>ORDER BY a<br>ORDER BY a,b<br>ORDER BY a,b,c<br>ORDER BY a DESC, b DESC, c DESC</li>
-<li>如果 where 使用索引的最左前缀定义为常量，则 order by 能使用索引<br>WHERE a = const ORDER BY b,c<br>WHERE a = const AND b = const ORDER BY c<br>WHERE a = const ORDER BY b,c<br>WHERE a = const AND b &gt; const ORDER BY b,c</li>
-</ol>
-<h2 id="开启慢查询日志"><a href="#开启慢查询日志" class="headerlink" title="开启慢查询日志"></a>开启慢查询日志</h2><ul>
-<li>查看是否开启及如何开启慢查询日志</li>
-</ul>
-<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta"># 查看是否开启了慢查询日志</span><br>show variables like <span class="hljs-string">'%slow_query_log%'</span>;<br><br><span class="hljs-meta"># 开启慢查询日志（临时开启）</span><br><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> slow_query_log = <span class="hljs-number">1</span>;<br></code></pre></td></tr></tbody></table></figure>
-
-<p>如果要永久生效，就必须修改配置文件 my.cnf （其他系统变量也是如此）<br>修改 my.cnf 文件，[mysqld] 下增加或修改参数 slow_query_log 和 slow_query_log_file 后，然后重启 MySQL 服务器。</p>
-<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs awk">slow_query_log = <span class="hljs-number">1</span> <br>slow_query_log_file = <span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/mysql/</span>slow-query.log<br></code></pre></td></tr></tbody></table></figure>
-
-<p>慢查询日志是由参数 long_query_time 控制，默认情况下 long_query_time 的值为 10 秒，可以使用以下命令查看</p>
-<figure class="highlight gams"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams">show <span class="hljs-keyword">variables</span> like <span class="hljs-comment">'long_query_time%'</span>;<br></code></pre></td></tr></tbody></table></figure>
-
-<p>可以使用命令修改，也可以在 my.cnf 参数里面修改。<br>假如运行时间正好等于 long_query_time 的情况，并不会被记录下来。也就是说，在 mysql 源码里是 <strong>判断大于 long_query_time，而非大于等于</strong></p>
-<p>设置阙值到 3 秒钟的就是慢 sql</p>
-<figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> long_query_time = <span class="hljs-number">3</span><br></code></pre></td></tr></tbody></table></figure>
-
-<p>设置慢查询日志阙值后看不出变化？</p>
-<ol>
-<li>需要重新连接或新开一个会话才能看到修改值</li>
-<li>或者直接使用以下命令也可以看到修改后的结果</li>
-</ol>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">global</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">'long_query_time'</span>;<br></code></pre></td></tr></tbody></table></figure>
-
-<p>如何测试？</p>
-<figure class="highlight autoit"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 模拟查询超过 4 秒钟</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sleep</span>(<span class="hljs-number">4</span>)<span class="hljs-comment">;</span><br></code></pre></td></tr></tbody></table></figure>
-
-<p>查看慢查询日志中记录了有多少条慢 sql</p>
-<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">global</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">'%Slow_queries%'</span>;<br></code></pre></td></tr></tbody></table></figure>
-
-<h3 id="慢查询分析工具-mysqldumpslow"><a href="#慢查询分析工具-mysqldumpslow" class="headerlink" title="慢查询分析工具 mysqldumpslow"></a>慢查询分析工具 mysqldumpslow</h3><p>可用参数：</p>
-<ul>
-<li>s : 表示按照何种方式排序</li>
-<li>c ：访问次数</li>
-<li>l ：锁定时间</li>
-<li>r ：返回记录</li>
-<li>t ：查询时间</li>
-<li>al ：平均锁定时间</li>
-<li>ar ：平均返回记录数</li>
-<li>at ：平均查询时间</li>
-<li>t ：即返回前面多少条的数据</li>
-<li>g ：后边搭配一个正则匹配模式，大小写不敏感的</li>
-</ul>
-<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-comment"># 得到返回记录集最多的 10 条 sql</span><br>mysqldumpslow -s r -t <span class="hljs-number">10</span> <span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/mysql/</span>slow-query.log<br><br><span class="hljs-comment"># 得到访问次数最多的 10 条 sql</span><br>mysqldumpslow -s c -t <span class="hljs-number">10</span> <span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/mysql/</span>slow-query.log<br><br><span class="hljs-comment"># 得到按照时间排序的前 10 条里面包含左连接的查询语句</span><br>mysqldumpslow -s t -t <span class="hljs-number">10</span> -g <span class="hljs-string">"left join"</span> <span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/mysql/</span>slow-query.log<br><br>另外建议在使用这些命令时结合 | 和 more 使用，否则有可能出现爆屏情况<br>mysqldumpslow -s r -t <span class="hljs-number">10</span> <span class="hljs-regexp">/var/</span>lib<span class="hljs-regexp">/mysql/</span>slow-query.log | more<br></code></pre></td></tr></tbody></table></figure>
-
-<h2 id="Show-Profile-（可以看到每一条-sql-执行的生命周期）"><a href="#Show-Profile-（可以看到每一条-sql-执行的生命周期）" class="headerlink" title="Show Profile （可以看到每一条 sql 执行的生命周期）"></a>Show Profile （可以看到每一条 sql 执行的生命周期）</h2><p>是 mysql 提供可以用来分析当前会话中语句执行的资源消耗情况。可以用于 sql 的调优的测量。<br>默认情况下，参数处于关闭状态，并保存最近 15 次的运行结果。</p>
-<ol>
-<li>查看是否已经开启</li>
-</ol>
-<figure class="highlight nginx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># 查看是否已经开启</span><br><span class="hljs-attribute">show</span> VARIABLES like <span class="hljs-string">'profiling'</span>;<br><br><span class="hljs-comment"># 如果没有开启的话，则开启</span><br><span class="hljs-attribute">set</span> profiling = <span class="hljs-literal">on</span>;<br></code></pre></td></tr></tbody></table></figure>
-
-<ol start="2">
-<li>运行各种查询语句</li>
-<li>使用以下命令，即可看到以上的查询语句</li>
-</ol>
-<figure class="highlight abnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">show profiles<span class="hljs-comment">;</span><br></code></pre></td></tr></tbody></table></figure>
-
-<ol start="4">
-<li>诊断 sql</li>
-</ol>
-<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">show </span>profile cpu,<span class="hljs-keyword">block </span>io for query <span class="hljs-number">1</span><span class="hljs-comment">;（上一步问题 sql 前面的数字号码）</span><br></code></pre></td></tr></tbody></table></figure>
-
-<p>show profile 的可用参数为：</p>
-<ul>
-<li>all ：显示所有的开销信息</li>
-<li>block io ：显示块 io 相关开销</li>
-<li>context switches ：上下文切换相关开销</li>
-<li>cpu ：显示 cpu 相关开销信息</li>
-<li>ipc ：显示发送和接收相关开销信息</li>
-<li>memory ：显示内存相关开销信息</li>
-<li>page faults ： 显示页面错误相关开销信息</li>
-<li>source ：显示和 Source_function，Source_file，Source_line 相关的开销信息</li>
-<li>swaps ：显示交换次数相关开销的信息</li>
-</ul>
-<h3 id="日常开发需要注意项"><a href="#日常开发需要注意项" class="headerlink" title="日常开发需要注意项"></a>日常开发需要注意项</h3><ol>
-<li>converting HEAP to MyISAM 查询结果太大，内存都不够用了往磁盘上搬了。</li>
-<li>Creating tmp table 创建临时表。（拷贝数据到临时表，用完再删除）</li>
-<li>Copying to tmp table on disk 把内存中临时表复制到磁盘，危险！</li>
-<li>locked 锁表了</li>
-</ol>
-<h2 id="全局查询日志"><a href="#全局查询日志" class="headerlink" title="全局查询日志"></a>全局查询日志</h2><blockquote>
-<p>永远不要在生产环境中开启这个功能！</p>
+<p>为了应对服务雪崩, 常见的做法是<strong>熔断和降级</strong>。最简单是加开关控制，当下游系统出问题时，开关打开降级，不再调用下游系统。还可以选用开源组件Hystrix来支持。<br>你要保证设计的系统能应对<strong>高并发场景</strong>，那肯定要考虑<strong>熔断降级</strong>逻辑进来。</p>
+<h1 id="11-限流"><a href="#11-限流" class="headerlink" title="11. 限流"></a>11. 限流</h1><p>限流也是我们应对高并发的一种方案。我们当然希望，在高并发大流量过来时，系统能全部请求都正常处理。但是有时候没办法，系统的CPU、网络带宽、内存、线程等资源都是有限的。因此，我们要考虑限流。<br>如果你的系统每秒扛住的请求是一千，<strong>如果一秒钟来了十万请求呢</strong>？换个角度就是说，高并发的时候，流量洪峰来了，超过系统的承载能力，怎么办呢？<br>这时候，我们可以采取限流方案。就是为了保护系统，多余的请求，直接丢弃。</p>
+<blockquote>
+<p><strong>什么是限流</strong>：在计算机网络中，限流就是控制网络接口发送或接收请求的速率，它可防止DoS攻击和限制Web爬虫。限流，也称流量控制。是指系统在面临高并发，或者大流量请求的情况下，限制新的请求对系统的访问，从而保证系统的稳定性。</p>
 </blockquote>
+<p>可以使用Guava的RateLimiter单机版限流，也可以使用Redis分布式限流，还可以使用阿里开源组件sentinel限流。</p>
+<h1 id="12-异步"><a href="#12-异步" class="headerlink" title="12. 异步"></a>12. 异步</h1><blockquote>
+<p>回忆一下什么是同步，什么是异步呢？以方法调用为例，它代表调用方要阻塞等待被调用方法中的逻辑执行完成。这种方式下，当被调用方法响应时间较长时，会造成调用方长久的阻塞，在高并发下会造成整体系统性能下降甚至发生雪崩。异步调用恰恰相反，调用方不需要等待方法逻辑执行完成就可以返回执行其他的逻辑，在被调用方法执行完毕后再通过回调、事件通知等方式将结果反馈给调用方。</p>
+</blockquote>
+<p>因此，设计一个高并发的系统，<strong>需要在恰当的场景使用异步</strong>。如何使用异步呢？后端可以借用消息队列实现。比如在海量秒杀请求过来时，先放到消息队列中，快速响应用户，告诉用户请求正在处理中，这样就可以释放资源来处理更多的请求。秒杀请求处理完后，通知用户秒杀抢购成功或者失败。</p>
+<h1 id="13-接口的常规优化"><a href="#13-接口的常规优化" class="headerlink" title="13. 接口的常规优化"></a>13. 接口的常规优化</h1><p>设计一个高并发的系统，需要设计接口的性能足够好，这样系统在相同时间，就可以处理更多的请求。当说到这里的话，可以跟面试官说说接口优化的一些方案了。<br><img src="https://cdn.l2xy.com/post_img/system_design_img/system_design_05.png" srcset="/img/loading/loading3.gif" lazyload></p>
+<h1 id="14-压力测试确定系统瓶颈"><a href="#14-压力测试确定系统瓶颈" class="headerlink" title="14. 压力测试确定系统瓶颈"></a>14. 压力测试确定系统瓶颈</h1><p>设计高并发系统，离不开最重要的一环，<strong>就是压力测试</strong>。就是在系统上线前，需要对系统进行压力测试，测清楚你的系统支撑的最大并发是多少，确定系统的瓶颈点，让自己心里有底，最好预防措施。<br>压测完要分析整个调用链路，性能可能出现问题是网络层（如带宽）、Nginx层、服务层、还是数据路缓存等中间件等等。<br>loadrunner是一款不错的压力测试工具，jmeter则是接口性能测试工具，都可以来做下压测。</p>
+<h1 id="15-应对突发流量峰值：扩容-切流量"><a href="#15-应对突发流量峰值：扩容-切流量" class="headerlink" title="15. 应对突发流量峰值：扩容+切流量"></a>15. 应对突发流量峰值：扩容+切流量</h1><p>如果是突发的流量高峰，除了降级、限流保证系统不跨，我们可以采用这两种方案，保证系统尽可能服务用户请求：</p>
 <ul>
-<li>在配置文件中开启<br>在 mysql 的 my.cnf 中，设置如下：</li>
+<li>扩容：<strong>比如增加从库、提升配置的方式</strong>，提升系统/组件的流量承载能力。比如增加MySQL、Redis从库来处理查询请求。</li>
+<li>切流量：<strong>服务多机房部署</strong>，如果高并发流量来了，把流量从一个机房切换到另一个机房。</li>
 </ul>
-<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># 开启</span><br><span class="hljs-attr">general_log</span> = <span class="hljs-number">1</span><br><span class="hljs-comment"># 记录日志文件的路径</span><br><span class="hljs-attr">general_log_file</span> = /path/logfile<br><span class="hljs-comment"># 输出格式</span><br><span class="hljs-attr">log_output</span> = FILE<br></code></pre></td></tr></tbody></table></figure>
-
-<ul>
-<li>直接执行 sql 语句开启</li>
-</ul>
-<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 开启</span><br><span class="hljs-built_in">set</span> global <span class="hljs-attribute">general_log</span>=1;<br><span class="hljs-comment"># 用表格的方式记录查询日志</span><br><span class="hljs-built_in">set</span> global log_output = <span class="hljs-string">'TABLE'</span>;<br><span class="hljs-comment"># 此后，你所编写的 sql 语句，将会记录到 mysql 库里的 general_log 表</span><br>select * <span class="hljs-keyword">from</span> mysql.general_log;<br></code></pre></td></tr></tbody></table></figure>
-
 
                 
               </div>
@@ -639,7 +496,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  <a href="/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" class="category-chain-item">系统架构</a>
   
   
 
@@ -654,9 +511,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/MySQL/">#MySQL</a>
+        <a href="/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">#系统架构</a>
       
-        <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/">#性能优化</a>
+        <a href="/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/">#高并发</a>
       
     </div>
   
@@ -668,8 +525,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>MySQL 性能分析</div>
-      <div>https://www.chendujin.com/posts/1e4459df.html</div>
+      <div>高并发系统设计的15个方向</div>
+      <div>https://www.chendujin.com/posts/3fece8a5.html</div>
     </div>
     <div class="license-meta">
       
@@ -681,7 +538,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年7月11日</div>
+          <div>2023年3月26日</div>
         </div>
       
       
@@ -713,18 +570,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/b17a8184.html" title="MySQL 三范式">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">MySQL 三范式</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/6b30c31b.html" title="MySQL 主从复制">
-                        <span class="hidden-mobile">MySQL 主从复制</span>
+                      <a href="/posts/41482089.html" title="Docker和K8S架构和实践">
+                        <span class="hidden-mobile">Docker和K8S架构和实践</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

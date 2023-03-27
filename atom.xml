@@ -6,7 +6,7 @@
   <link href="https://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="https://www.chendujin.com/"/>
-  <updated>2023-03-26T06:06:35.567Z</updated>
+  <updated>2023-03-26T10:38:50.511Z</updated>
   <id>https://www.chendujin.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高并发系统设计的15个方向</title>
+    <link href="https://www.chendujin.com/posts/3fece8a5.html"/>
+    <id>https://www.chendujin.com/posts/3fece8a5.html</id>
+    <published>2023-03-26T10:18:17.000Z</published>
+    <updated>2023-03-26T10:38:50.511Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一道场景设计题目：&lt;strong&gt;如何设计一个高并发系统&lt;/strong&gt;。&lt;br&gt;&lt;img src=&quot;https://cdn.l2xy.com/post_img/system_design_img/system_design_01.png&quot;&gt;&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="系统架构" scheme="https://www.chendujin.com/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/"/>
+    
+    
+    <category term="系统架构" scheme="https://www.chendujin.com/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/"/>
+    
+    <category term="高并发" scheme="https://www.chendujin.com/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker和K8S架构和实践</title>
@@ -570,31 +598,6 @@
     <category term="计算机基础" scheme="https://www.chendujin.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
     
     <category term="数学基础" scheme="https://www.chendujin.com/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>计算机体系</title>
-    <link href="https://www.chendujin.com/posts/30268d74.html"/>
-    <id>https://www.chendujin.com/posts/30268d74.html</id>
-    <published>2022-03-05T16:52:17.000Z</published>
-    <updated>2023-03-19T04:07:21.448Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="计算机基础" scheme="https://www.chendujin.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
-    
-    
-    <category term="计算机基础" scheme="https://www.chendujin.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
