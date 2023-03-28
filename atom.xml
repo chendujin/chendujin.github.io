@@ -6,7 +6,7 @@
   <link href="https://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="https://www.chendujin.com/"/>
-  <updated>2023-03-26T10:38:50.511Z</updated>
+  <updated>2023-03-28T15:29:01.713Z</updated>
   <id>https://www.chendujin.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>docker-compose进阶使用</title>
+    <link href="https://www.chendujin.com/posts/9869a5f0.html"/>
+    <id>https://www.chendujin.com/posts/9869a5f0.html</id>
+    <published>2023-03-28T15:13:42.000Z</published>
+    <updated>2023-03-28T15:29:01.713Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot; class=&quot;headerlink&quot; title=&quot;一、概述&quot;&gt;&lt;/a&gt;一、概述&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;docker-compose 项目是docker官方的开源项目，</summary>
+        
+      
+    
+    
+    
+    <category term="Docker" scheme="https://www.chendujin.com/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://www.chendujin.com/tags/Docker/"/>
+    
+    <category term="Linux" scheme="https://www.chendujin.com/tags/Linux/"/>
+    
+    <category term="docker-compose" scheme="https://www.chendujin.com/tags/docker-compose/"/>
+    
+  </entry>
   
   <entry>
     <title>高并发系统设计的15个方向</title>
@@ -569,35 +599,6 @@
     <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
     
     <category term="数据结构" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数学基础</title>
-    <link href="https://www.chendujin.com/posts/e403a46.html"/>
-    <id>https://www.chendujin.com/posts/e403a46.html</id>
-    <published>2022-03-08T13:35:50.000Z</published>
-    <updated>2023-03-19T04:07:21.448Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;学习数据结构，需要具备以下数学基础知识，这里只是简单提及一些公式和原理，具体的内容和深入学习请参考《高等数学》《离散数学》《数论》相关知识。&lt;/p&gt;
-&lt;p&gt;&lt;a name=&quot;zi9Lw&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h4 id=&quot;1-指数&quot;&gt;&lt;a href=&quot;#1-指数&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="计算机基础" scheme="https://www.chendujin.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
-    
-    
-    <category term="计算机基础" scheme="https://www.chendujin.com/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/"/>
-    
-    <category term="数学基础" scheme="https://www.chendujin.com/tags/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
