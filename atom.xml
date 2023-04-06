@@ -6,7 +6,7 @@
   <link href="https://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="https://www.chendujin.com/"/>
-  <updated>2023-03-28T15:29:59.056Z</updated>
+  <updated>2023-04-06T06:35:19.084Z</updated>
   <id>https://www.chendujin.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Laravel依赖注入原理和控制反转原理</title>
+    <link href="https://www.chendujin.com/posts/88ff6cd3.html"/>
+    <id>https://www.chendujin.com/posts/88ff6cd3.html</id>
+    <published>2023-04-06T06:33:15.000Z</published>
+    <updated>2023-04-06T06:35:19.084Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;依赖注入&quot;&gt;&lt;a href=&quot;#依赖注入&quot; class=&quot;headerlink&quot; title=&quot;依赖注入&quot;&gt;&lt;/a&gt;依赖注入&lt;/h2&gt;&lt;h3 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>docker-compose进阶使用</title>
@@ -559,34 +580,6 @@
         
     <summary type="html">&lt;p&gt;&lt;a name=&quot;IZWUv&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;1-内置类型&quot;&gt;&lt;a href=&quot;#1-内置类型&quot; class=&quot;headerlink&quot; title=&quot;1. 内置类型&quot;&gt;&lt;/a&gt;1. 内置类型&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Go入门基础" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
-    
-    <category term="其他" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
-    
-    
-    <category term="Go入门基础" scheme="https://www.chendujin.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go-init函数和mian函数</title>
-    <link href="https://www.chendujin.com/posts/78525829.html"/>
-    <id>https://www.chendujin.com/posts/78525829.html</id>
-    <published>2022-03-16T12:25:47.000Z</published>
-    <updated>2023-03-19T04:07:21.433Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a name=&quot;dscSF&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;init函数&quot;&gt;&lt;a href=&quot;#init函数&quot; class=&quot;headerlink&quot;</summary>
         
       
     
