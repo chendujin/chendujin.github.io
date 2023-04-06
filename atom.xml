@@ -6,7 +6,7 @@
   <link href="https://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="https://www.chendujin.com/"/>
-  <updated>2023-04-06T06:35:19.084Z</updated>
+  <updated>2023-04-06T06:37:20.885Z</updated>
   <id>https://www.chendujin.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.chendujin.com/posts/88ff6cd3.html"/>
     <id>https://www.chendujin.com/posts/88ff6cd3.html</id>
     <published>2023-04-06T06:33:15.000Z</published>
-    <updated>2023-04-06T06:35:19.084Z</updated>
+    <updated>2023-04-06T06:37:20.885Z</updated>
     
     
       
@@ -34,6 +34,12 @@
     
     
     
+    <category term="PHP" scheme="https://www.chendujin.com/categories/PHP/"/>
+    
+    
+    <category term="PHP" scheme="https://www.chendujin.com/tags/PHP/"/>
+    
+    <category term="Laravel" scheme="https://www.chendujin.com/tags/Laravel/"/>
     
   </entry>
   
