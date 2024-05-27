@@ -1,0 +1,1190 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon_apple.png">
+  <link rel="icon" href="/img/favicon_default.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Thomas">
+  <meta name="keywords" content="技术博客 PHP Python Java Go Vue">
+  
+    <meta name="description" content="1. Kubernetes的由来Kubernetes的名字来自希腊，意思是“舵手”或“领航员”。简称K8S，是用8代替名字中间的8个字符“ubernete”而成的缩写。所以，我们说K8S也就是说Kubernetes。在行业内，我们更习惯说K8S，而不是Kubernetes。Google公司在10多年前开始采用的容器化基础架构——borg。随着Docker的大规模应用，Google采用Go语言对Bo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker和K8S架构和实践">
+<meta property="og:url" content="https://www.chendujin.com/posts/41482089.html">
+<meta property="og:site_name" content="托马斯 の 博客">
+<meta property="og:description" content="1. Kubernetes的由来Kubernetes的名字来自希腊，意思是“舵手”或“领航员”。简称K8S，是用8代替名字中间的8个字符“ubernete”而成的缩写。所以，我们说K8S也就是说Kubernetes。在行业内，我们更习惯说K8S，而不是Kubernetes。Google公司在10多年前开始采用的容器化基础架构——borg。随着Docker的大规模应用，Google采用Go语言对Bo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-01.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-02.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-03.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-04.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-05.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-06.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-07.png">
+<meta property="og:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-08.png">
+<meta property="article:published_time" content="2023-03-26T05:07:16.000Z">
+<meta property="article:modified_time" content="2023-12-01T09:03:52.624Z">
+<meta property="article:author" content="Thomas">
+<meta property="article:tag" content="Docker">
+<meta property="article:tag" content="K8s">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.l2xy.com/post_img/k8s_img/k8s-01.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+     <!-- 一言 --> <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script> 
+  
+  <title>Docker和K8S架构和实践 - 托马斯 の 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extention.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3975823_gtgcqt26r9l.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.chendujin.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading/loading3.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qCMJVUHYsbbH9Q1lTT9GgUAt-gzGzoHsz","app_key":"ur8rtnOJICggyXqctm8jEY3L","server_url":"https://qcmjvuhy.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="托马斯 の 博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>托马斯 の 博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-golang"></i>
+                <span>Go系列</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" target="_self">
+                    <i class="iconfont icon-caozuoxitong"></i>
+                    <span>计算机基础</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" target="_self">
+                    <i class="iconfont icon-pythonrumenjichu"></i>
+                    <span>Go入门基础</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
+                    <i class="iconfont icon-shejimoshi"></i>
+                    <span>Go设计模式</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" target="_self">
+                    <i class="iconfont icon-beehive-full"></i>
+                    <span>Go数据结构与算法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-docker2"></i>
+                <span>Docker系列</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Docker/" target="_self">
+                    <i class="iconfont icon-docker-04"></i>
+                    <span>Docker入门基础</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-mian-K8S"></i>
+                <span>K8s系列</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/K8s/" target="_self">
+                    <i class="iconfont icon-ks"></i>
+                    <span>K8s架构</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-2"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-guidangxiangmu"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-guanyuwo"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-qita3"></i>
+                <span>其他</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    <i class="iconfont icon-tags-fill"></i>
+                    <span>标签</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/links/" target="_self">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>友链</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bgpost.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Docker和K8S架构和实践"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-03-26 13:07" pubdate>
+          2023年3月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          64 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Docker和K8S架构和实践</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="1-Kubernetes的由来"><a href="#1-Kubernetes的由来" class="headerlink" title="1. Kubernetes的由来"></a>1. Kubernetes的由来</h1><p>Kubernetes的名字来自希腊，意思是“舵手”或“领航员”。简称K8S，是用8代替名字中间的8个字符“ubernete”而成的缩写。所以，我们说K8S也就是说Kubernetes。在行业内，我们更习惯说K8S，而不是Kubernetes。<br>Google公司在10多年前开始采用的容器化基础架构——borg。随着Docker的大规模应用，Google采用Go语言对Borg框架进行了重写，开发出了Kubernetes。Google 于 2014 年开源了 Kubernetes 项目。<br>2015年4月，Borg论文《Large-scale cluster management at Google with Borg》伴随Kubernetes的高调宣传被Google首次公开，人们终于有缘得窥其全貌。<br>在Google内部，Kubernetes的原始代号曾经是Serven of Nine，即星际迷航中友好的“Borg”角色，它标识中的舵轮有七个轮辐就是对该项目代号的致意，如图所示。<br><img src="https://cdn.l2xy.com/post_img/k8s_img/k8s-01.png" srcset="/img/loading/loading3.gif" lazyload><br>Kubernetes v1.0于2015年7月21日发布，紧随其后，Google与Linux基金会合作组建了Cloud Native Computing Foundation（云原生计算基金会，简称为CNCF），并将Kubernetes作为种子技术予以提供。这之后，Kubernetes进入了版本快速迭代期，从此不断地融入着新功能，如Federation、Network Policy API、RBAC、CRD和CSI，等等，并增加了对Windows系统的支持。<br>那K8S到底是做什么的呢？在说它之前我们少不了要对Docker进行一番概述。</p>
+<h1 id="2-什么是Docker"><a href="#2-什么是Docker" class="headerlink" title="2. 什么是Docker"></a>2. 什么是Docker</h1><p><img src="https://cdn.l2xy.com/post_img/k8s_img/k8s-02.png" srcset="/img/loading/loading3.gif" lazyload><br>Docker 公司的前身是 DotCloud，2010年成立，2013年更名 Docker，同年发布了 Docker-compose 组件提供容器的编排工具。2014年 Docker 发布1.0版本，2015年Docker 提供 Docker-machine，支持 windows 平台。<br>Docker基于Go 语言开发并遵从 Apache2.0 协议开源。Docker 从 17.03 版本之后分为 CE（Community Edition: 社区版） 和 EE（Enterprise Edition: 企业版）<br><strong>那到底什么是Docker？</strong><br>Docker是一个C/S架构的系统，Docker守护进程运行在<strong>主机</strong>上， 然后通过Socket连接从<strong>客户端</strong>访问Docker守护进程。Docker守护进程从客户端接受命令，并按照命令，管理运行在主机上的<strong>容器</strong>。<br><strong>一个Docker是一个运行时的环境，简单理解为进程运行的集装箱。</strong><br>Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。Docker容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。</p>
+<h2 id="2-1-Docker-VS-KVM"><a href="#2-1-Docker-VS-KVM" class="headerlink" title="2.1 Docker VS KVM"></a>2.1 Docker VS KVM</h2><p>Docker有着比虚拟机更少的抽象层。Docker利用的是宿主机的内核，VM需要的是Guest OS，分层架构如下：<br><img src="https://cdn.l2xy.com/post_img/k8s_img/k8s-03.png" srcset="/img/loading/loading3.gif" lazyload><br>二者的架构不同：</p>
+<ul>
+<li>VM在宿主机操作系统的基础上创建虚拟层、虚拟化的操作系统和虚拟化的仓库，然后再安装应用；</li>
+<li>Container(Docker容器)，在宿主机的操作系统上创建Docker引擎，在引擎的基础上再安装应用。</li>
+</ul>
+<p>作为一种轻量级的虚拟化方式，Docker在运行应用上跟传统的虚拟机方式相比具有显著优势：</p>
+<ul>
+<li>Docker 容器很快，启动和停止可以在秒级实现。</li>
+<li>Docker 容器对系统资源需求很少，一台主机上可以同时运行数千个Docker容器。</li>
+<li>Docker 通过类似Git的操作来方便用户获取、分发和更新应用镜像。</li>
+<li>Docker 通过Dockerfile配置文件来支持灵活的自动化创建和部署机制，提高工作效率。</li>
+<li>Docker 容器除了运行其中的应用之外，基本不消耗额外的系统资源，保证应用性能的同时，尽量减小系统开销。</li>
+<li>Docker 利用Linux系统上的多种防护机制实现了严格可靠的隔离。从1.3版本开始，Docker引入了安全选项和镜像签名机制，极大地提高了使用Docker的安全性。<table>
+<thead>
+<tr>
+<th><strong>特性</strong></th>
+<th><strong>容器</strong></th>
+<th><strong>虚拟机</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>启动速度</td>
+<td>秒级</td>
+<td>分钟级</td>
+</tr>
+<tr>
+<td>硬盘使用</td>
+<td>一般为MB</td>
+<td>一般为GB</td>
+</tr>
+<tr>
+<td>性能</td>
+<td>接近原生</td>
+<td>弱于原生</td>
+</tr>
+<tr>
+<td>系统支持量</td>
+<td>单机支持上千个容器</td>
+<td>一般几十个</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h2 id="2-2-Docker-架构"><a href="#2-2-Docker-架构" class="headerlink" title="2.2 Docker 架构"></a>2.2 Docker 架构</h2><p>Docker 包括三个基本概念:</p>
+<ul>
+<li><strong>镜像（Image）</strong>：Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:16.04 就包含了完整的一套 Ubuntu16.04 最小系统的 root 文件系统。</li>
+<li><strong>容器（Container）</strong>：镜像（Image）和容器（Container）的关系，就像是面向对象程序设计中的类和实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</li>
+<li><strong>仓库（Repository）</strong>：仓库可看成一个代码控制中心，用来保存镜像。</li>
+</ul>
+<h1 id="3-Kubernetes架构"><a href="#3-Kubernetes架构" class="headerlink" title="3. Kubernetes架构"></a>3. Kubernetes架构</h1><p>Docker不具备自动扩容、负载均衡以及分布式集群部署的能力。Kubernetes是容器集群的编排系统，是一个开源的平台，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。它是基于容器（通常是Docker）之上的。<br>K8S是一个编排容器的工具，其实也是管理应用的全生命周期的一个工具，从创建应用，应用的部署，应用提供服务，扩容缩容应用，应用更新，都非常的方便，而且可以做到故障自愈。<br>我们从整体架构来入手，来看看K8s架构。<br><img src="https://cdn.l2xy.com/post_img/k8s_img/k8s-04.png" srcset="/img/loading/loading3.gif" lazyload></p>
+<h2 id="3-1-组件"><a href="#3-1-组件" class="headerlink" title="3.1 组件"></a>3.1 组件</h2><p><strong>一个K8S集群包含一个master节点和一群node节点</strong></p>
+<ul>
+<li><p>Mater节点负责管理和控制</p>
+</li>
+<li><p>Node节点是工作负载节点，里面是具体的容器，容器中部署的是具体的服务。</p>
+<h3 id="3-1-1-Master"><a href="#3-1-1-Master" class="headerlink" title="3.1.1 Master"></a>3.1.1 Master</h3><p>用于控制 Kubernetes 节点的计算机。所有任务分配都来自于此。Mater节点包括API Server、Scheduler、Controller Manager、etcd。</p>
+</li>
+<li><p>API Server：整个集群的对外接口，供客户端和其他组件调用。</p>
+</li>
+<li><p>Scheduler：负责集群内部资源调度</p>
+</li>
+<li><p>Controller Manager：负责管理控制器。</p>
+</li>
+<li><p>etcd：用于保存集群中所有网络配置和对象状态信息。</p>
+</li>
+</ul>
+<p>下面详细介绍下master组件<br><strong>1、API Server</strong><br>API Server是整个集群的统一入口，各组件的协调者，以HTTP的API形式对外提供服务，所有对象资源的增删改查和监听操作都交给API Server处理后再提交给etcd进行存储。<br><strong>2、Scheduler</strong><br>Scheduler负责集群内部资源调度，根据调度算法为新创建的pod选择一个node节点，Scheduler在整个集群中起到了承上启下的重要功能，承上是指负责接收Controller Manager创建的新的pod，为其安排一个node节点，启下是指当为pod选定node节点后，目标Node上的kubelet服务进程会接管该pod。<br><img src="https://cdn.l2xy.com/post_img/k8s_img/k8s-05.png" srcset="/img/loading/loading3.gif" lazyload><br>简单描述下创建Pod的流程：</p>
+<ul>
+<li>通过kubectl发送创建pod的请求，命令会先被apiserver拦截，再把创建的pod存储到etcd的podQueue中</li>
+<li>Scheduler发起调用请求，命令被apiserver拦截，获取etcd中podQueue.NodeList，使用调度算法（调度算法：预选调度、优选策略）选择一个合适的node节点</li>
+<li>把确定了的合适的pod、node存储到etcd中</li>
+<li>node节点上的Kubelet进程发送请求获取pod、node对应创建资源</li>
+<li>node发现pod是本node需要创建的，kubelet就开始创建pod</li>
+</ul>
+<p><strong>3、Controller Manager</strong><br>每个资源都对应一个控制器（Kubernets Controller），用来处理集群中常规的后台任务，而Controller Manager是用来负责管理控制器的。<br>K8S集群有以下控制器：</p>
+<ul>
+<li>Replication/ReplicationSet Controller：保证RC中定义的副本数量与实际运行的pod数量一致。</li>
+<li>Node Controller：管理维护Node，定期检查Node节点的健康状态，标识出失效和未失效的Node节点。</li>
+<li>Namespace Controller：管理维护Namespace，定期清理无效的Namespace，包括Namespace下的API对象，例如pod和service等</li>
+<li>Service Controller：管理维护Service，提供负载以及服务代理。</li>
+<li>Endpoints Controller：管理维护Endpoints，即维护关联service和pod的对应关系，其对应关系通过Label来进行关联的</li>
+<li>Service Account Controller：管理维护Service Account，为每个Namespace创建默认的Service Account，同时为Service Account创建Service Account Secret。</li>
+<li>Persistent Volume Controller：持久化数据控制器，用来部署有状态服务</li>
+<li>Deamon Set Controller：让每一个Node节点都运行相同的服务</li>
+<li>Deployment Controller：无状态服务部署控制器</li>
+<li>StateFulSet Controller：有状态服务部署控制器</li>
+<li>Job Controller：管理维护Job，为Job创建一次性任务Pod，保证完成Job指定完成的任务数目。</li>
+<li>Pod Autoscaler Controller：实现pod的自动伸缩，定时获取监控数据，进行策略匹配，当满足条件时执行pod的伸缩动作。</li>
+</ul>
+<p><strong>4、etcd</strong><br>etcd是一个第三方的服务，提供分布式键值对存储，用于保存网络配置、集群状态等信息。K8S中有两个服务需要用到etcd来协调和存储数据：网络插件flannel和K8S本身状态，其中flannel使用etcd存储网络配置信息，K8S本身使用etcd存储各种对象的状态和元信息配置。</p>
+<h3 id="3-1-2-Node"><a href="#3-1-2-Node" class="headerlink" title="3.1.2 Node"></a>3.1.2 Node</h3><p>node节点包括Docker、kubelet、kube-proxy、Fluentd、kube-dns（可选）、pod<br><img src="https://cdn.l2xy.com/post_img/k8s_img/k8s-06.png" srcset="/img/loading/loading3.gif" lazyload><br><strong>1、kubelet</strong><br>kubelet是Mater在Node节点上的代理，每个Node节点都会启动一个kubelet进程，用来处理Mater节点下发到Node节点的任务，管理本机运行容器的生命周期，比如创建容器、Pod挂载数据卷、下载secret、获取容器和节点的状态等工作，kubelet将每个pod转换成一组容器。<br>kubelet默认监听四个端口：4194、10250、10255、10248</p>
+<ul>
+<li>4194端口：kubelet通过该端口可以获取到该节点的环境信息以及node上运行的容器状态等内容，访问 <a target="_blank" rel="noopener" href="http://localhost:4194/">http://localhost:4194</a> 可以看到 cAdvisor 的管理界面,通过 kubelet 的启动参 数 –cadvisor-port 可以指定启动的端口。</li>
+<li>10250端口：kubelet API的端口，也就是kubelet server与api server的通讯端口，定期请求apiserver获取自己所应当处理的任务，通过该端口可以访问和获取node资源及状态。</li>
+<li>10248端口：健康检查的端口，通过访问该端口可以判断kubelet是否正常工作，可以通过 kubelet 的启动 参数 –healthz-port 和 –healthz-bind-address 来指定监听的地址和端口</li>
+<li>10255端口：提供了pod和node的信息，接口以只读形式暴露出去，访问该端口不需要认证和鉴权。</li>
+</ul>
+<p><strong>2、kube-proxy</strong><br>在Node节点上实现Pod网络代理，维护网络规则和四层负载均衡工作，kube-proxy本质上类似于一个反向代理，我们可以把每个节点上运行的kube-proxy看作是service的透明代理兼LB。<br>kube-proxy监听apiserver中service与endpoints的信息，配置iptables规则，请求通过iptables直接转发给pod。<br><img src="https://cdn.l2xy.com/post_img/k8s_img/k8s-07.png" srcset="/img/loading/loading3.gif" lazyload><br><strong>3、docker</strong><br>运行容器的引擎，pod内部运行的都是容器，这个容器是由Docker引擎创建的，Docker引擎是node节点的基础服务。<br><strong>4、pod</strong><br>pod是最小的部署单元，一个pod由一个或多个容器组成，pod中共享存储和网络，在同一个Docker主机上运行。pod内部可以运行一个或多个容器，一般情况下，为了便于管理，一个pod下只运行一个容器。常用于sidercar服务部署。</p>
+<h3 id="3-1-3-Pod"><a href="#3-1-3-Pod" class="headerlink" title="3.1.3 Pod"></a>3.1.3 Pod</h3><p>pod：负责执行请求和所分配任务的计算机。由 Kubernetes 主机负责对节点进行控制，被部署在单个节点上的，且包含一个或多个容器的容器组。同一容器集中的所有容器共享同一个 IP 地址、IPC、主机名称及其它资源。容器集会将网络和存储从底层容器中抽象出来。<br>pod是一个大的容器，由K8S创建，pod内部的是docker容器，由Docker引擎创建。K8S不会直接管理容器，而是管理Pod。pod内部封装了docker容器，同时拥有自己的ip地址，也有用自己的HostName，Pod就像一个物理机一样，实际上Pod就是一个虚拟化的容器（进程），pod中运行的是一个或者多个容器。<br><img src="https://cdn.l2xy.com/post_img/k8s_img/k8s-08.png" srcset="/img/loading/loading3.gif" lazyload><br>pod的作用是管理线上运行的应用程序，在通常情况下，在服务上线部署的时候，pod通常被用来部署一组相关的服务。而一个调用链上的服务就叫做一组相关的服务。但是实际生产上一般是一个Pod对应一个服务，不会在一个Pod上部署太多的服务。<br>K8S中的pause容器主要为每个业务容器提供以下功能，从而对各个Pod进行了隔离：</p>
+<ul>
+<li>PID命名空间隔离：pod中不同的应用程序可以看到其他应用程序的进程ID</li>
+<li>网络命名空间隔离：Pod中多个容器能够访问同一个IP和端口范围</li>
+<li>IPC命名空间隔离：Pod中多个容器能够使用System VIPC或POSIX消息队列进行通信</li>
+<li>UTS命名空间隔离：pod中多个容器共享一个主机名和挂在卷</li>
+<li>Pod中各个容器可以访问在Pod级别定义的Volumes</li>
+</ul>
+<p>一个Pod创建的过程：首先kubelet会先创建一个pod，然后立马会创建一个pause容器，pause容器是默认创建的，然后再创建内部其他的业务容器。</p>
+<h3 id="3-1-4复制控制器（Replication-controller）"><a href="#3-1-4复制控制器（Replication-controller）" class="headerlink" title="3.1.4复制控制器（Replication controller）"></a>3.1.4复制控制器（Replication controller）</h3><p>用于控制应在集群某处运行的完全相同的容器集副本数量。</p>
+<h3 id="3-1-5-服务（Service）"><a href="#3-1-5-服务（Service）" class="headerlink" title="3.1.5 服务（Service）"></a>3.1.5 服务（Service）</h3><p>将工作内容与容器集分离。Kubernetes 服务代理会自动将服务请求分发到正确的容器集——无论这个容器集会移到集群中的哪个位置，甚至可以被替换掉。</p>
+<h3 id="3-1-6-Kubelet"><a href="#3-1-6-Kubelet" class="headerlink" title="3.1.6 Kubelet"></a>3.1.6 Kubelet</h3><p>运行在节点上的服务，可读取容器清单（container manifest），确保指定的容器启动并运行。</p>
+<h3 id="3-1-7-kubectl"><a href="#3-1-7-kubectl" class="headerlink" title="3.1.7 kubectl"></a>3.1.7 kubectl</h3><p>Kubernetes 的命令行配置工具。</p>
+<h2 id="3-2-控制器实例"><a href="#3-2-控制器实例" class="headerlink" title="3.2 控制器实例"></a>3.2 控制器实例</h2><p>kubernetes中建立了很多的controller（控制器），这相当于一个控制机，来管理pod的状态和行为。<br>Pod分为自主式Pod和控制器管理的Pod。类型：</p>
+<ul>
+<li>ReplicationController和ReplicaSet（无状态服务RS-Deployment）</li>
+<li>Deployment 无状态负载</li>
+<li>DaemonSet 守护进程集（以Node为节点部署）</li>
+<li>StateFulSet 有状态负载（有状态服务）</li>
+<li>Job/cronJob 普通任务/计划任务（批处理任务部署）</li>
+<li>Horizontal Pod Autoscaling 自动扩展（根据利用率平滑扩，可以理解为并不是一个控制器，而是一个控制器的附属品，以其他控制器作为模板）</li>
+</ul>
+<h3 id="3-2-1-ReplicationController-RC"><a href="#3-2-1-ReplicationController-RC" class="headerlink" title="3.2.1 ReplicationController(RC)"></a>3.2.1 ReplicationController(RC)</h3><p>ReplicationController用来确保容器应用的副本数始终保持在用户定义的副本数，即如果有容器异常退出，会自动创建新的Pod来替代；而如果异常多出来的容器也会自动回收。在新版本的Kubernetes 中建议使用ReplicaSet来取代ReplicationControlle，如果集群的资源不够，会动态的显示可用的pod。<br><strong>ReplicaSet(RS)</strong><br>ReplicaSet跟ReplicationController只是名字不一样，并且ReplicaSet支持集合式的selector，通过标签（matchLabels）来管理 Pod。虽然ReplicaSet 可以独立使用，但一般还是建议使用Deployment 来自动管理ReplicaSet，避免不兼容问题(比如ReplicaSet不支持rolling update但Deployment 支持)。<br>基本的yaml配置：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">apps/v1</span>  <span class="hljs-comment">#api版本定义</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">ReplicaSet</span>  <span class="hljs-comment">#定义资源类型为ReplicaSet</span><br><span class="hljs-attr">metadata:</span>  <span class="hljs-comment">#元数据定义</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">test</span><br>  <span class="hljs-attr">namespace:</span> <span class="hljs-string">default</span><br><span class="hljs-attr">spec:</span>  <span class="hljs-comment"># ReplicaSet的规格定义</span><br>  <span class="hljs-attr">replicas:</span> <span class="hljs-number">3</span>  <span class="hljs-comment">#定义副本数量为3个</span><br>  <span class="hljs-attr">selector:</span>  <span class="hljs-comment">#标签选择器，定义匹配Pod的标签</span><br>    <span class="hljs-attr">matchLabels:</span>  <span class="hljs-comment"># RS通过labels来确定某个Pod是否归该RS管，即RS通过标签来监控Pod</span><br>      <span class="hljs-attr">tier:</span> <span class="hljs-string">test</span><br>  <span class="hljs-attr">template:</span>  <span class="hljs-comment">#Pod的模板定义，与上面Pod的定义一致</span><br>    <span class="hljs-attr">metadata:</span>  <span class="hljs-comment">#Pod的元数据定义</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">app-pod</span>  <span class="hljs-comment">#自定义Pod的名称</span><br>      <span class="hljs-attr">labels:</span>  <span class="hljs-comment">#定义Pod的标签，需要和上面的标签选择器内匹配规则中定义的标签一致，可以多出其他标签</span><br>        <span class="hljs-attr">tier:</span> <span class="hljs-string">test</span><br>    <span class="hljs-attr">spec:</span>  <span class="hljs-comment">#Pod的规格定义</span><br>      <span class="hljs-attr">containers:</span>  <span class="hljs-comment">#容器定义</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span>  <span class="hljs-comment">#容器名称</span><br>        <span class="hljs-attr">image:</span> <span class="hljs-string">hub.org/library/nginx:v1</span>  <span class="hljs-comment">#容器镜像</span><br>        <span class="hljs-attr">imagePullPolicy:</span> <span class="hljs-string">IfNotPresent</span>  <span class="hljs-comment">#拉取镜像的规则</span><br>        <span class="hljs-attr">env:</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">GET_HOSTS_FROM</span><br>          <span class="hljs-attr">value:</span> <span class="hljs-string">dns</span><br>        <span class="hljs-attr">ports:</span>  <span class="hljs-comment">#暴露端口</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">http</span>  <span class="hljs-comment">#端口名称</span><br>          <span class="hljs-attr">containerPort:</span> <span class="hljs-number">80</span><br></code></pre></td></tr></tbody></table></figure>
+<p>创建并查看RS：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建 RS</span><br>[root@k8s-master01 yaml]# kubectl create -f rs.yaml<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看创建的 rs</span><br>[root@k8s-master01 yaml]# kubectl get rs<br>NAME       DESIRED   CURRENT   READY   AGE<br>frontend   3         3         3       25m<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看rs创建的 3 个 Pod，</span><br>[root@k8s-master01 yaml]# kubectl get pod<br>NAME             READY   STATUS    RESTARTS   AGE<br>frontend-cbhjc   1/1     Running   0          25m<br>frontend-dffcd   1/1     Running   0          25m<br>frontend-qmugq   1/1     Running   0          25m<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">删除 Pod后，RS会自动重建 Pod，维持设置的副本数（3），通过 Pod 后的随机值可以看出，Pod是重新创建的</span><br>[root@k8s-master01 yaml]# kubectl delete pod --all<br>pod "frontend-cbhjc" deleted<br>pod "frontend-dffcd" deleted<br>pod "frontend-qmugq" deleted<br>[root@k8s-master01 yaml]# kubectl get pod<br>NAME             READY   STATUS    RESTARTS   AGE<br>frontend-5lgj9   1/1     Running   0          19s<br>frontend-gxhrv   1/1     Running   0          19s<br>frontend-rwhc5   1/1     Running   0          19s<br></code></pre></td></tr></tbody></table></figure>
+<p>修改pod的labels：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">查看Pod的标签</span><br>[root@k8s-master01 yaml]# kubectl get pod --show-labels<br>NAME             READY   STATUS    RESTARTS   AGE     LABELS<br>frontend-5lgj9   1/1     Running   0          9m20s   tier=test<br>frontend-gxhrv   1/1     Running   0          9m20s   tier=test<br>frontend-rwhc5   1/1     Running   0          9m20s   tier=test<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">修改其中一个Pod的标签</span><br>[root@k8s-master01 yaml]# kubectl label pod frontend-5lgj9 tier=new --overwrite=true<br>pod/frontend-5lgj9 labeled<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">RS会通过匹配 labels 来确定哪些 Pod 是自己管理的</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">当改变了 frontend-5lgj9 的 labels 时，该 Pod 已经不归 frontend 这个 RS 管了，所以 RS 又重新创建了一个Pod</span><br>[root@k8s-master01 yaml]# kubectl get pod --show-labels<br>NAME             READY   STATUS    RESTARTS   AGE   LABELS<br>frontend-5lgj9   1/1     Running   0          84m   tier=test<br>frontend-7fbp8   1/1     Running   0          4s    tier=new<br>frontend-gxhrv   1/1     Running   0          84m   tier=test<br>frontend-rwhc5   1/1     Running   0          84m   tier=test<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">删除RS，Pod也会被删除</span><br>[root@k8s-master01 yaml]# kubectl delete rs test<br>[root@k8s-master01 yaml]# kubectl get pod --show-labels<br>NAME             READY   STATUS    RESTARTS   AGE   LABELS<br>frontend-5lgj9   1/1     Running   0          98m   tier=new<br></code></pre></td></tr></tbody></table></figure>
+<h3 id="3-2-2-Deployment"><a href="#3-2-2-Deployment" class="headerlink" title="3.2.2 Deployment"></a>3.2.2 Deployment</h3><p>Deployment 为 Pod 和 ReplicaSet 提供了一个声明式定义 (declarative) 方法,用来替代以前的 ReplicationController 来方便的管理应用。典型的应用场景包括:</p>
+<ul>
+<li>定义 Deployment 来创建 ReplicaSet和Pod</li>
+<li>滚动升级和回滚应用</li>
+<li>扩容和缩容</li>
+<li>暂停和继续 Deployment</li>
+</ul>
+<p>Deployment是通过管理RS来管理Pod的。<br>滚动更新：更新V1到V2，新建一个RS然后创建1个V2，删除1个V1：达到滚动更新，此时RS，停用、保留，可以回滚：<br><strong>创建并查看</strong></p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">apps/v1</span>  <span class="hljs-comment">#api版本定义</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Deployment</span>  <span class="hljs-comment">#定义资源类型为Deploymant</span><br><span class="hljs-attr">metadata:</span>  <span class="hljs-comment">#元数据定义</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">nginx-test</span> <span class="hljs-comment">#deployment控制器名称</span><br>  <span class="hljs-attr">namespace:</span> <span class="hljs-string">default</span>  <span class="hljs-comment">#名称空间</span><br><span class="hljs-attr">spec:</span>  <span class="hljs-comment">#deployment控制器的规格定义</span><br>  <span class="hljs-attr">replicas:</span> <span class="hljs-number">3</span>  <span class="hljs-comment">#定义deployment副本数量为2个</span><br>  <span class="hljs-attr">selector:</span>  <span class="hljs-comment">#标签选择器，定义匹配Pod的标签</span><br>    <span class="hljs-attr">matchLabels:</span><br>      <span class="hljs-attr">app:</span> <span class="hljs-string">nginx-test</span><br>  <span class="hljs-attr">template:</span>  <span class="hljs-comment">#Pod的模板定义</span><br>    <span class="hljs-attr">metadata:</span>  <span class="hljs-comment">#Pod的元数据定义</span><br>      <span class="hljs-attr">labels:</span>  <span class="hljs-comment">#定义Pod的标签，和上面的标签选择器标签一致，可以多出其他标签</span><br>        <span class="hljs-attr">app:</span> <span class="hljs-string">nginx-test</span><br>    <span class="hljs-attr">spec:</span>  <span class="hljs-comment">#Pod的规格定义</span><br>      <span class="hljs-attr">containers:</span>  <span class="hljs-comment">#容器定义</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span>  <span class="hljs-comment">#容器名称</span><br>        <span class="hljs-attr">image:</span> <span class="hljs-string">hub.org/library/nginx:v1</span>  <span class="hljs-comment">#容器镜像</span><br>        <span class="hljs-attr">ports:</span>  <span class="hljs-comment">#暴露端口</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">http</span>  <span class="hljs-comment">#端口名称</span><br>          <span class="hljs-attr">containerPort:</span> <span class="hljs-number">80</span><br></code></pre></td></tr></tbody></table></figure>
+<p>创建Deployment并查看：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">创建Deployment对象</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">--record 可以方便的查看 revision 的变化（roolout 被触发（spec.template被更改）就会创建一个 revision）</span><br>kubectl apply -f deployment.yaml --record<br><br>[root@k8s-master01 yaml]# kubectl get deployment<br>NAME               READY   UP-TO-DATE   AVAILABLE   AGE<br>nginx-deployment   3/3     3            3           8m30s<br>[root@k8s-master01 yaml]# kubectl get rs<br>NAME                          DESIRED   CURRENT   READY   AGE<br>nginx-deployment-645ccc47cc   3         3         3       9m32s<br>[root@k8s-master01 yaml]# kubectl get pod<br>NAME                                READY   STATUS    RESTARTS   AGE<br>nginx-deployment-645ccc47cc-885sz   1/1     Running   0          9m37s<br>nginx-deployment-645ccc47cc-k5jcm   1/1     Running   0          9m37s<br>nginx-deployment-645ccc47cc-rwnk5   1/1     Running   0          9m37s<br></code></pre></td></tr></tbody></table></figure>
+<p>kubectl get deployment 命令所显示的字段有：</p>
+<ul>
+<li>NAME：Deployment 的名称。</li>
+<li>READY：显示应用程序的可用的副本数。显示的模式是“就绪个数/期望个数”。</li>
+<li>UP-TO-DATE：显示为了达到期望状态已经更新的副本数。</li>
+<li>AVAILABLE：显示应用可供用户使用的副本数。</li>
+<li>AGE：显示应用程序正常运行的时间。</li>
+</ul>
+<p><strong>扩容</strong></p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl scale deployment nginx-test --replicas=5<br></code></pre></td></tr></tbody></table></figure>
+<p><strong>更新</strong><br>修改 Pod 模板相关的配置参数便能完成 Deployment 控制器资源的更新。<br>更新容器的镜像：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl set image deployment/[deployment名称] [容器名称]=[镜像名称]<br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl set image deployment/nginx-test nginx=myapp:v2<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">可以看到原来的 RS 已经停用并做为备份，并创建了新的 RS</span><br>[root@k8s-master01 yaml]# kubectl get rs<br>NAME                          DESIRED   CURRENT   READY   AGE<br>nginx-deployment-645ccc47cc   0         0         0       4h45m<br>nginx-deployment-6c67f64d64   5         5         4       8s<br></code></pre></td></tr></tbody></table></figure>
+<p><strong>回滚</strong><br>可以通过设置 .spec.revisonHistoryLimit 项来指定 deployment 最多保留多少 revision 历史记录。默认的会保留所有的 revision；如果将该项设置为 0，Deployment 就不允许回退了</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">回到上一个版本</span><br>kubectl rollout undo deployment/nginx-test<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看当前的更新状态</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果 rollout 成功完成， 该命令将返回一个 0 值的 Exit Code</span><br>kubectl rollout status deployments/nginx-test<br><span class="hljs-meta prompt_"># </span><span class="language-bash"><span class="hljs-built_in">echo</span> $?		<span class="hljs-comment"># 输出 0</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看当前版本（自定义 Pod 的输出）</span><br>kubectl get pods -o custom-columns=Name:metadata.name,Image:spec.containers[0].image<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">通过该命令查看更新历史记录，Pod 模板被修改就会创建一个 revision</span><br>kubectl rollout history deployment/nginx-test<br><span class="hljs-meta prompt_"># </span><span class="language-bash">查询结果，创建 Deployment 时加上 --record 才会显示CHANGE-CAUSE</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">REVISION  CHANGE-CAUSE</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">1         kubectl apply --filename=deployment.yaml --record=<span class="hljs-literal">true</span></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">2         kubectl apply --filename=deployment.yaml --record=<span class="hljs-literal">true</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">回滚到指定版本</span><br>kubectl rollout undo deployment/nginx-deployment --to-revision=1<br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">暂停 deployment 的更新</span><br>kubectl rollout pause deployment/nginx-test<br></code></pre></td></tr></tbody></table></figure>
+<p><strong>更新策略</strong><br>Deployment 可确保在更新时仅关闭一定数量的 Pod。默认情况下，它确保至少所需 Pods 75% 处于运行状态（最大不可用比例为 25%），这个参数可以自定义。<br>Deployment 还确保创建 Pod 数量只可能比期望 Pods 数高一点点。 默认情况下，它可确保启动的 Pod 个数比期望个数最多多出 25%（最大峰值 25%）。<br>如果旧的 Pod 创建还没有达到期望数时（如期望数是 5，但现在只创建了3个），就更新了 Pod。在这种情况下，Deployment 会立即杀掉已创建的旧 Pod，并开始创建新 Pod。它不会等到所有的旧 Pod 都创建完成后才开始创建新 Pod。<br>例如，如果仔细查看上述 Deployment （kubectl describe deployment），将看到它首先创建了一些新的 Pod，然后删除了一些旧的 Pods。并且创建新的 Pods 创建没有到达 25% ，它不会杀死老 Pods，直到有足够的数量新的 Pods 已经出现。 然后开始杀死老 Pods ，在足够数量的旧 Pods 被杀死前并没有创建新 Pods。它确保至少 4 个 Pod 可用，同时最多总共 7 个 Pod 可用。</p>
+<h3 id="3-2-3-Horizontal-Pod-Autoscaling-HPA"><a href="#3-2-3-Horizontal-Pod-Autoscaling-HPA" class="headerlink" title="3.2.3 Horizontal Pod Autoscaling(HPA)"></a>3.2.3 Horizontal Pod Autoscaling(HPA)</h3><p>HPA根据利用率平滑扩展，仅适用于Deployment 和ReplicaSet ，在V1版本中仅支持根据Pod的CPU利用率扩所容，在vlalpha 版本中，支持根据内存和用户自定义的metric扩缩容。<br>HPA基于RS定义，并且监控V2Pod的资源利用率：<br>当符合条件后，会创建Pod：<br>每次创建后判断条件，符合后继续创建，直到最大值。使用率小就回收，直到最小值，实现水平自动扩展（弹性伸缩）。</p>
+<h3 id="3-3-4-StatefulSet"><a href="#3-3-4-StatefulSet" class="headerlink" title="3.3.4 StatefulSet"></a>3.3.4 StatefulSet</h3><p>StatefulSet是为了解决有状态服务的问题(对应Deployments 和Repl icaSets是为无状态服务而设计)，其应用场景包括:</p>
+<ul>
+<li>稳定的持久化存储，即Pod重新调度(比如删除后重新创建)后还是能访问到相同的持久化数据，基于PVC来实现</li>
+<li>稳定的网络标志，即Pod重新调度后其PodName 和HostName 不变，基于Headless Service(即没有Cluster IP的Service )来实现</li>
+<li>有序部署，有序扩展，即Pod是有顺序的，在部署或者扩展的时候**要依据定义的顺序依次依次进行(**即从0到N-1,在下一个Pod运行之前所有之前的Pod必须都是Running 和Ready状态)，基于init containers来实现有序收缩，有序删除(即从N-1到0)</li>
+<li>部署顺序和收缩顺序是相反的。</li>
+</ul>
+<p>一个完整的 StatefulSet 应用由三个部分组成： headless service（无头服务）、StatefulSet controller、volumeClaimTemplate(PVC)。</p>
+<ul>
+<li>Headless Service：定义 Pod 网络标识( DNS domain)；</li>
+<li>volumeClaimTemplates ：存储卷申请模板，创建 PVC。指定 pvc 名称大小，将自动创建 pvc，且 pvc 必须由存储类供应；</li>
+<li>StatefulSet ：定义具体应用，名为 APP，有三个 Pod 副本，并为每个 Pod 定义了一个域名部署 statefulset。</li>
+</ul>
+<p><strong>为什么需要 headless service 无头服务？</strong><br>在用 Deployment 时，每一个 Pod 名称是没有顺序的，是随机字符串，因此是 Pod 名称是无序的，但是在 statefulset 中要求必须是有序 ，每一个 pod 不能被随意取代，pod 重建后 pod 名称还是一样的。而 pod IP 是变化的，所以是以 Pod 名称来识别。pod 名称是 pod 唯一性的标识符，必须持久稳定有效。这时候要用到无头服务，它可以给每个 Pod 一个唯一的名称 。<br>除此之外，StatefulSet 在 Headless Service 的基础上又为 StatefulSet 控制的每个 Pod 副本创建了一个 DNS 域名，这个域名的格式为：</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_">$</span><span class="language-bash">(podname).(headless server name)</span><br>FQDN：$(podname).(headless server name).namespace.svc.cluster.local<br></code></pre></td></tr></tbody></table></figure>
+<p><strong>为什么需要 volumeClaimTemplate？</strong><br>对于有状态的副本集都会用到持久存储，对于分布式系统来讲，它的最大特点是数据是不一样的，所以各个节点不能使用同一存储卷，每个节点有自已的专用存储，但是如果在 Deployment 中的 Pod template 里定义的存储卷，是所有副本集共用一个存储卷，数据是相同的，因为是基于模板来的；而 statefulset 中每个 Pod 都要自已的专有存储卷，所以 statefulset 的存储卷就不能再用 Pod 模板来创建了，于是 statefulSet 使用 volumeClaimTemplate，称为卷申请模板，它会为每个 Pod 生成不同的 pvc，并绑定 pv，从而实现各 pod 有专用存储。这就是为什么要用 volumeClaimTemplate 的原因。</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># headless service</span><br><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Service</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">app</span><br>  <span class="hljs-attr">labels:</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">app</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">ports:</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">port:</span> <span class="hljs-number">80</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">web</span><br>  <span class="hljs-attr">clusterIP:</span> <span class="hljs-string">None</span>	<span class="hljs-comment"># 通过指定 clusterIP 为 None 实现 headless service</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span>		<span class="hljs-comment"># (A) A，B，C 三处要相同，根据 label 来匹配哪些 pod 归无头服务管</span><br><span class="hljs-meta">---</span><br><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">apps/v1</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">StatefulSet</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">web</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">selector:</span><br>    <span class="hljs-attr">matchLabels:</span><br>      <span class="hljs-attr">app:</span> <span class="hljs-string">app</span>		<span class="hljs-comment"># (B) A，B，C 三处要相同，根据 label 匹配决定哪些 pod 归StatefulSet管</span><br>  <span class="hljs-attr">serviceName:</span> <span class="hljs-string">"app"</span>		<span class="hljs-comment"># 指定 Service 名称（上面创建的，一定要是个无头服务）</span><br>  <span class="hljs-attr">replicas:</span> <span class="hljs-number">3</span>		<span class="hljs-comment"># 副本数</span><br>  <span class="hljs-attr">template:</span><br>    <span class="hljs-attr">metadata:</span><br>      <span class="hljs-attr">labels:</span><br>        <span class="hljs-attr">app:</span> <span class="hljs-string">nginx</span>		<span class="hljs-comment"># (C) A，B，C 三处要相同，label标签</span><br>    <span class="hljs-attr">spec:</span><br>      <span class="hljs-attr">containers:</span>		<span class="hljs-comment"># 容器信息</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">nginx</span><br>          <span class="hljs-attr">image:</span> <span class="hljs-string">docer/myapp:v2</span><br>          <span class="hljs-attr">ports:</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">containerPort:</span> <span class="hljs-number">80</span>		<span class="hljs-comment"># 释放的端口</span><br>              <span class="hljs-attr">name:</span> <span class="hljs-string">web</span>		<span class="hljs-comment"># 端口名字</span><br>          <span class="hljs-attr">volumeMounts:</span>		<span class="hljs-comment"># 挂载</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">www</span><br>              <span class="hljs-attr">mountPath:</span> <span class="hljs-string">/usr/share/nginx/html</span>	 <span class="hljs-comment"># 容器内目录</span><br>  <span class="hljs-attr">volumeClaimTemplates:</span>		<span class="hljs-comment"># 卷请求声明模板(pvc模板)</span><br>    <span class="hljs-bullet">-</span> <span class="hljs-attr">metadata:</span><br>        <span class="hljs-attr">name:</span> <span class="hljs-string">www</span><br>      <span class="hljs-attr">spec:</span><br>        <span class="hljs-attr">accessModes:</span> [ <span class="hljs-string">"ReadWriteOnce"</span> ]	<span class="hljs-comment"># 指定要请求的卷的访问模式</span><br>        <span class="hljs-attr">storageClassName:</span> <span class="hljs-string">"nfs"</span>		<span class="hljs-comment"># 指定要请求的卷的类名，只有与 PV 中的storageClassName 相同时，才会匹配</span><br>        <span class="hljs-attr">resources:</span><br>          <span class="hljs-attr">requests:</span><br>            <span class="hljs-attr">storage:</span> <span class="hljs-string">1Gi</span>	<span class="hljs-comment"># 指定要请求的卷大小必须满足 1G</span><br></code></pre></td></tr></tbody></table></figure>
+<h3 id="3-3-5-DaemonSet"><a href="#3-3-5-DaemonSet" class="headerlink" title="3.3.5 DaemonSet"></a>3.3.5 DaemonSet</h3><p>DaemonSet确保全部(或者一些) Node上运行一个Pod的副本（同一个 Node 上运行多个 Pod 需要多个 DaemonSet）。当有Node加入集群时，也会为他们新增一个Pod。当有Node从集群移除时，这些Pod也会被回收。删除DaemonSet 将会删除它创建的所有Pod。使用DaemonSet的–些典型用法:</p>
+<ul>
+<li><p>运行集群存储daemon, 例如在每个Node上运行glusterd、 ceph；</p>
+</li>
+<li><p>在每个Node上运行日志收集daemon, 例如fluentd、 logstash；</p>
+</li>
+<li><p>在每个Node上运行监控daemon, 例如Prometheus Node Exporter。</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">apps/v1</span>             <span class="hljs-comment">#api版本定义</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">DaemonSet</span>                 <span class="hljs-comment">#定义资源类型为DaemonSet</span><br><span class="hljs-attr">metadata:</span>                       <span class="hljs-comment">#元数据定义</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">daemonset-nginx</span>         <span class="hljs-comment">#daemonset控制器名称</span><br>  <span class="hljs-attr">namespace:</span> <span class="hljs-string">default</span>            <span class="hljs-comment">#名称空间</span><br>  <span class="hljs-attr">labels:</span>                       <span class="hljs-comment">#设置daemonset的标签</span><br>    <span class="hljs-attr">app:</span> <span class="hljs-string">daemonset</span><br><span class="hljs-attr">spec:</span>                           <span class="hljs-comment">#DaemonSet控制器的规格定义</span><br>  <span class="hljs-attr">selector:</span>                     <span class="hljs-comment">#指定匹配pod的标签</span><br>    <span class="hljs-attr">matchLabels:</span>                <span class="hljs-comment">#指定匹配pod的标签</span><br>      <span class="hljs-attr">app:</span> <span class="hljs-string">daemonset-APP</span>      <span class="hljs-comment">#注意：这里需要和template中定义的标签一样</span><br>  <span class="hljs-attr">template:</span>                     <span class="hljs-comment">#Pod的模板定义</span><br>    <span class="hljs-attr">metadata:</span>                   <span class="hljs-comment">#Pod的元数据定义</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">app</span><br>      <span class="hljs-attr">labels:</span>                   <span class="hljs-comment">#定义Pod的标签，需要和上面的标签一致，可以多出其他标签</span><br>        <span class="hljs-attr">app:</span> <span class="hljs-string">daemonset-app</span><br>    <span class="hljs-attr">spec:</span>                       <span class="hljs-comment">#Pod的规格定义</span><br>      <span class="hljs-attr">containers:</span>               <span class="hljs-comment">#容器定义</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">app-pod</span>         <span class="hljs-comment">#容器名字</span><br>        <span class="hljs-attr">image:</span> <span class="hljs-string">hub.org/library/nginx:v1</span>     <span class="hljs-comment">#容器镜像</span><br>        <span class="hljs-attr">ports:</span>                  <span class="hljs-comment">#暴露端口</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">http</span>            <span class="hljs-comment">#端口名称</span><br>          <span class="hljs-attr">containerPort:</span> <span class="hljs-number">80</span>     <span class="hljs-comment">#暴露的端口</span><br></code></pre></td></tr></tbody></table></figure>
+<p>可以看到两个节点上各运行一个：</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs yaml">[<span class="hljs-string">root@k8s-master01</span> <span class="hljs-string">yaml</span>]<span class="hljs-comment"># kubectl get pod -o wide</span><br><span class="hljs-string">NAME</span>                                <span class="hljs-string">READY</span>   <span class="hljs-string">STATUS</span>    <span class="hljs-string">RESTARTS</span>   <span class="hljs-string">AGE</span>    <span class="hljs-string">IP</span>            <span class="hljs-string">NODE</span>         <span class="hljs-string">NOMINATED</span> <span class="hljs-string">NODE</span>   <span class="hljs-string">READINESS</span> <span class="hljs-string">GATES</span><br><span class="hljs-string">daemonset-nginx-js4tyu</span>             <span class="hljs-number">1</span><span class="hljs-string">/1</span>     <span class="hljs-string">Running</span>   <span class="hljs-number">0</span>          <span class="hljs-string">82s</span>    <span class="hljs-number">10.244</span><span class="hljs-number">.1</span><span class="hljs-number">.21</span>   <span class="hljs-string">k8s-node01</span>   <span class="hljs-string">&lt;none&gt;</span>           <span class="hljs-string">&lt;none&gt;</span><br><span class="hljs-string">daemonset-nginx-kkc5nb</span>              <span class="hljs-number">1</span><span class="hljs-string">/1</span>     <span class="hljs-string">R</span><br></code></pre></td></tr></tbody></table></figure>
+<h3 id="3-2-6-Job"><a href="#3-2-6-Job" class="headerlink" title="3.2.6 Job"></a>3.2.6 Job</h3><p>job负责一次性的批处理任务，即仅执行一次的任务，他保证批处理任务的一个或者多个Pod成功结束。<br>随着 Pod 成功结束，Job 跟踪记录成功完成的 Pod 个数。 当数量达到指定的成功个数阈值时，任务（即 Job）结束。如 删除 Job ，会清除所创建的全部 Pod。 挂起 Job 的操作会删除 Job 的所有活跃 Pod，直到 Job 被再次恢复执行。</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">batch/v1</span>		<span class="hljs-comment"># kubectl explain job 查看 job 版本</span><br><span class="hljs-attr">kind:</span> <span class="hljs-string">Job</span><br><span class="hljs-attr">metadata:</span><br>  <span class="hljs-attr">name:</span> <span class="hljs-string">pi</span><br><span class="hljs-attr">spec:</span><br>  <span class="hljs-attr">template:</span><br>    <span class="hljs-attr">metadata:</span><br>      <span class="hljs-attr">name:</span> <span class="hljs-string">pi</span><br>    <span class="hljs-attr">spec:</span><br>      <span class="hljs-attr">containers:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">pi</span><br>        <span class="hljs-attr">image:</span> <span class="hljs-string">perl</span><br>        <span class="hljs-attr">command:</span> [<span class="hljs-string">"python"</span>,<span class="hljs-string">"-Mbignum=bpi"</span>,<span class="hljs-string">"-wle"</span><span class="hljs-string">print</span> <span class="hljs-string">bpi(2000)"</span>]  <span class="hljs-comment"># 通过 python 进行圆周率计算，输出小数点后2000位</span><br>      <span class="hljs-attr">restartPolicy:</span> <span class="hljs-string">Never</span>		<span class="hljs-comment"># 重启策略</span><br></code></pre></td></tr></tbody></table></figure></li>
+<li><p>spec.template 格式同 Pod</p>
+</li>
+<li><p>容器的 restartPolicy 仅支持 Never 或 OnFailure，因为 Job 就是批处理任务，执行完自动退出，如果是 Always，那么就会不断的执行</p>
+</li>
+<li><p>单个 Pod 时，默认 Pod 成功运行后（返回码为 0） Job 即结束</p>
+</li>
+<li><p>spec.completions：标志Job结束需要成功运行的 Pod 个数，默认为 1</p>
+</li>
+<li><p>spec.parallelism：标志并行运行的 Pod 的个数，默认为 1</p>
+</li>
+<li><p>spec.activeDeadlineSeconds：标志失败 Pod 的重试最大时间，超过这个时间不会继续重试</p>
+</li>
+</ul>
+<p><strong>Cronjob</strong><br>Cronjob管理基于时间的Job，即在给定时间点运行一次或周期性地在给定时间点运行Job。<br>创建 Job 操作应该是幂等的。CronJob 仅负责创建与其调度时间相匹配的 Job，而 Job 又负责管理其代表的 Pod。<br>CronJob 的参数</p>
+<ul>
+<li>spec.schedule：调度指定任务运行周期，格式同 Cron，必填</li>
+<li>spec.jobTemplate：Job 模板指定需要运行的任务，格式同 Job，必填</li>
+<li>spec.startingDeadlineSeconds：启动 Job 的期限（秒级别），可选字段。如果因为任何原因而错过了被调度的时间，那么错过执行时间的 Job 将被认为是失败的。如果没有指定，则没有期限</li>
+<li>spec.concurrencyPolicy：并发策略，可选字段。它指定了如何处理被 Cron Job 创建的 Job 的并发执行。只允许指定下面策略中的一种：Allow （默认）：允许并发执行运行 Job；Forbid ：禁止并发运行，如果前一个还没有完成，则直接跳过下一个，需配置；Replace ：取消当前正在运行的 Job，用一个新的来替换，需配置。注意：当前策略只能应用于同一个 Cron Job 创建的 Job。如果存在多个 Cron Job，它们创建的 Job 之间总是允许并发运行。</li>
+<li>spec.suspend：挂起，可选字段。如果设置为 true ，后续所有执行都会被挂起。它对已经开始执行的 Job 不起作用。默认值为 false 。</li>
+<li>spec.successfulJobsHistoryLimit 和 .spec.failedJobsHistoryLimit：历史限制，可选字段。它们指定了可以保留多少完成和失败的 Job。默认情况下，它们分别设置为 3 和 1 。设置限制的值为 0 ，相关类型的 Job 完成后将不会被保留。<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">batch/v1beta1</span> <br><span class="hljs-attr">kind:</span> <span class="hljs-string">CronJob</span> <br><span class="hljs-attr">metadata:</span> <br>  <span class="hljs-attr">name:</span> <span class="hljs-string">hello</span> <br><span class="hljs-attr">spec:</span> <br>  <span class="hljs-attr">schedule:</span> <span class="hljs-string">"*/1 16 * * *"</span> <br>  <span class="hljs-attr">jobTemplate:</span> <br>    <span class="hljs-attr">spec:</span> <br>      <span class="hljs-attr">template:</span> <br>        <span class="hljs-attr">spec:</span> <br>          <span class="hljs-attr">containers:</span> <br>          <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">go</span> <br>            <span class="hljs-attr">image:</span> <span class="hljs-string">ubox</span> <br>            <span class="hljs-attr">args:</span> 		<span class="hljs-comment"># 运行命令，输出当前时间</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">/bin/sh</span> <br>            <span class="hljs-bullet">-</span> <span class="hljs-string">-c</span> <br>            <span class="hljs-bullet">-</span> <span class="hljs-string">date;</span> <span class="hljs-string">echo</span> <span class="hljs-string">Hello</span> <span class="hljs-string">from</span> <span class="hljs-string">the</span> <span class="hljs-string">Kubernetes</span> <span class="hljs-string">cluster</span> <br>          <span class="hljs-attr">restartPolicy:</span> <span class="hljs-string">OnFailure</span> <br><br></code></pre></td></tr></tbody></table></figure>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml">[<span class="hljs-string">root@k8s-master01</span> <span class="hljs-string">yaml</span>]<span class="hljs-comment"># kubectl get cronjob</span><br><span class="hljs-string">NAME</span>    <span class="hljs-string">SCHEDULE</span>      <span class="hljs-string">SUSPEND</span>   <span class="hljs-string">ACTIVE</span>   <span class="hljs-string">LAST</span> <span class="hljs-string">SCHEDULE</span>   <span class="hljs-string">AGE</span><br><span class="hljs-string">go</span>   <span class="hljs-string">*/1</span> <span class="hljs-string">*</span> <span class="hljs-string">*</span> <span class="hljs-string">*</span> <span class="hljs-string">*</span>   <span class="hljs-literal">False</span>     <span class="hljs-number">0</span>        <span class="hljs-string">&lt;none&gt;</span>          <span class="hljs-string">29s</span><br><br>[<span class="hljs-string">root@k8s-master01</span> <span class="hljs-string">yaml</span>]<span class="hljs-comment"># kubectl get job</span><br><span class="hljs-string">NAME</span>               <span class="hljs-string">COMPLETIONS</span>   <span class="hljs-string">DURATION</span>   <span class="hljs-string">AGE</span><br><span class="hljs-string">go-1603320660</span>   <span class="hljs-number">1</span><span class="hljs-string">/1</span>           <span class="hljs-string">108s</span>       <span class="hljs-string">2m4s</span><br><span class="hljs-string">go-1603320720</span>   <span class="hljs-number">0</span><span class="hljs-string">/1</span>           <span class="hljs-string">61s</span>        <span class="hljs-string">61s</span><br><span class="hljs-string">go-1603320780</span>   <span class="hljs-number">0</span><span class="hljs-string">/1</span>           <span class="hljs-string">34s</span>         <span class="hljs-string">34s</span><br><br><span class="hljs-comment"># 删除 CronJob</span><br><span class="hljs-string">kubectl</span> <span class="hljs-string">delete</span> <span class="hljs-string">deployment/nginx-test</span><br></code></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h1 id="4-高频操作"><a href="#4-高频操作" class="headerlink" title="4. 高频操作"></a>4. 高频操作</h1><p>集群信息的各种查看基本上是在Master节点操作<br>1、 查看集群的配置信息</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl cluster-info<br></code></pre></td></tr></tbody></table></figure>
+<p>2、查看 Node的状态</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl get nodes<br>kubectl get node [IP] //节点IP可以用空格隔开写多个<br>kubectl describe node [IP]<br>kubectl delete node [IP]<br></code></pre></td></tr></tbody></table></figure>
+<p>3、查看 Service 基本信息</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl get service<br></code></pre></td></tr></tbody></table></figure>
+<p>4、查看POD的状态</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl get pods --all-namespaces or kubectl get pods -A<br>kubectl get po --namespace=default<br>kubectl get po --namespace={default,kube-system}<br></code></pre></td></tr></tbody></table></figure>
+<p>5、同时查看多种资源信息</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl get pod,svc -n kube-system<br></code></pre></td></tr></tbody></table></figure>
+<p>6、查看资源类型所对应的Apiversion</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl explain pod<br></code></pre></td></tr></tbody></table></figure>
+<p>7、查看字段帮助信息</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl explain deployment<br>kubectl explain deployment.spec<br>kubectl explain deployment.spec.replicas<br></code></pre></td></tr></tbody></table></figure>
+<p>8、 查看一个Servcie 的pod配置和参数</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl get pod -l name=[service-name] -o wide<br>kubectl get rc<br>kubectl get cm<br>kubectl get rc [service-name] -o yaml<br>kubectl get cm [service-name] -o yaml<br></code></pre></td></tr></tbody></table></figure>
+<p>9、锁定资源，不被调度</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl uncordon/cordon [node-ip]<br></code></pre></td></tr></tbody></table></figure>
+<p>10、添加污点控制调度</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl taint node [node-ip] dedicate=standalone:NoSchedule //增加污点<br>kubectl taint node [node-ip] dedicate=standalone:NoSchedule- //删除污点：key=value:affect<br></code></pre></td></tr></tbody></table></figure>
+<p>11、修改label，pod资源分割</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">kubectl label nodes [node-ip] type=[name] --overwrite<br></code></pre></td></tr></tbody></table></figure>
+<h1 id="5-参考文章"><a href="#5-参考文章" class="headerlink" title="5. 参考文章"></a>5. 参考文章</h1><ul>
+<li><a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/227.html">http://docs.kubernetes.org.cn/227.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/20e8a74e3a73">https://www.jianshu.com/p/20e8a74e3a73</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a73c33283de8">https://www.jianshu.com/p/a73c33283de8</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8e077225e">https://www.jianshu.com/p/8e077225e</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44766883/article/details/126549043">https://blog.csdn.net/qq_44766883/article/details/126549043</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/K8s/" class="category-chain-item">K8s</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Docker/" class="print-no-link">#Docker</a>
+      
+        <a href="/tags/K8s/" class="print-no-link">#K8s</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Docker和K8S架构和实践</div>
+      <div>https://www.chendujin.com/posts/41482089.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Thomas</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年3月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/3fece8a5.html" title="高并发系统设计的15个方向">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">高并发系统设计的15个方向</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/b7b2c450.html" title="一文掌握MySQL日志">
+                        <span class="hidden-mobile">一文掌握MySQL日志</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-if17rl0bm-chendujin.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tw-weather","https://unpkg.com/@waline/emojis@1.0.1/tw-flag"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"说点什么吧 ...","avatar":"retro","requiredFields":["nick"],"highlight":true,"avatarForce":false,"visitor":true,"avatarCDN":"https://seccdn.libravatar.org/avatar/"},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备19152558号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=19152558"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading/loading3.gif" lazyload alt="police-icon"/>
+          
+          <span>粤ICP备19152558号-1</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/Cherry.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicLine.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

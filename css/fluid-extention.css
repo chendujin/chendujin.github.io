@@ -1,0 +1,21 @@
+figure.highlight {
+    /* background: #21252b; */
+    background: rgb(246,248,250);
+    border-radius: 8px;
+    box-shadow: 1px 2px 22px 1px rgba(0, 0, 0, .3);
+    padding-top: 25px;
+    z-index:998;
+}
+
+figure.highlight::before {
+    background: #fc625d;
+    border-radius: 50%;
+    box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+    content: ' ';
+    height: 12px;
+    left: 12px;
+    margin-top: -18px;
+    position: absolute;
+    width: 12px;
+    z-index:999;
+}

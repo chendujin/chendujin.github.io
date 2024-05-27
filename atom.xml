@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>托马斯 の 博客</title>
+  
+  <subtitle>托马斯 の 博客</subtitle>
+  <link href="https://www.chendujin.com/atom.xml" rel="self"/>
+  
+  <link href="https://www.chendujin.com/"/>
+  <updated>2023-12-01T09:03:52.626Z</updated>
+  <id>https://www.chendujin.com/</id>
+  
+  <author>
+    <name>Thomas</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Laravel依赖注入原理和控制反转原理</title>
+    <link href="https://www.chendujin.com/posts/88ff6cd3.html"/>
+    <id>https://www.chendujin.com/posts/88ff6cd3.html</id>
+    <published>2023-04-06T06:33:15.000Z</published>
+    <updated>2023-12-01T09:03:52.626Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;依赖注入&quot;&gt;&lt;a href=&quot;#依赖注入&quot; class=&quot;headerlink&quot; title=&quot;依赖注入&quot;&gt;&lt;/a&gt;依赖注入&lt;/h2&gt;&lt;h3 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="PHP" scheme="https://www.chendujin.com/categories/PHP/"/>
+    
+    
+    <category term="PHP" scheme="https://www.chendujin.com/tags/PHP/"/>
+    
+    <category term="Laravel" scheme="https://www.chendujin.com/tags/Laravel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker-compose进阶使用</title>
+    <link href="https://www.chendujin.com/posts/9869a5f0.html"/>
+    <id>https://www.chendujin.com/posts/9869a5f0.html</id>
+    <published>2023-03-28T15:13:42.000Z</published>
+    <updated>2023-12-01T09:03:52.630Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;一、概述&quot;&gt;&lt;a href=&quot;#一、概述&quot; class=&quot;headerlink&quot; title=&quot;一、概述&quot;&gt;&lt;/a&gt;一、概述&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;docker-compose 项目是docker官方的开源项目，</summary>
+        
+      
+    
+    
+    
+    <category term="Docker" scheme="https://www.chendujin.com/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://www.chendujin.com/tags/Docker/"/>
+    
+    <category term="Linux" scheme="https://www.chendujin.com/tags/Linux/"/>
+    
+    <category term="docker-compose" scheme="https://www.chendujin.com/tags/docker-compose/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高并发系统设计的15个方向</title>
+    <link href="https://www.chendujin.com/posts/3fece8a5.html"/>
+    <id>https://www.chendujin.com/posts/3fece8a5.html</id>
+    <published>2023-03-26T10:18:17.000Z</published>
+    <updated>2023-12-01T09:03:52.635Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;一道场景设计题目：&lt;strong&gt;如何设计一个高并发系统&lt;/strong&gt;。&lt;br&gt;&lt;img src=&quot;https://cdn.l2xy.com/post_img/system_design_img/system_design_01.png&quot;&gt;&lt;/p&gt;
+&lt;h1</summary>
+        
+      
+    
+    
+    
+    <category term="系统架构" scheme="https://www.chendujin.com/categories/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/"/>
+    
+    
+    <category term="系统架构" scheme="https://www.chendujin.com/tags/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/"/>
+    
+    <category term="高并发" scheme="https://www.chendujin.com/tags/%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Docker和K8S架构和实践</title>
+    <link href="https://www.chendujin.com/posts/41482089.html"/>
+    <id>https://www.chendujin.com/posts/41482089.html</id>
+    <published>2023-03-26T05:07:16.000Z</published>
+    <updated>2023-12-01T09:03:52.624Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;1-Kubernetes的由来&quot;&gt;&lt;a href=&quot;#1-Kubernetes的由来&quot; class=&quot;headerlink&quot; title=&quot;1. Kubernetes的由来&quot;&gt;&lt;/a&gt;1.</summary>
+        
+      
+    
+    
+    
+    <category term="K8s" scheme="https://www.chendujin.com/categories/K8s/"/>
+    
+    
+    <category term="Docker" scheme="https://www.chendujin.com/tags/Docker/"/>
+    
+    <category term="K8s" scheme="https://www.chendujin.com/tags/K8s/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一文掌握MySQL日志</title>
+    <link href="https://www.chendujin.com/posts/b7b2c450.html"/>
+    <id>https://www.chendujin.com/posts/b7b2c450.html</id>
+    <published>2023-03-26T02:17:59.000Z</published>
+    <updated>2023-12-01T09:03:52.630Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;在MySQL 中我们经常会接触到三个核心日志，它们分别是：binlog 、redo log、undo</summary>
+        
+      
+    
+    
+    
+    <category term="MySQL" scheme="https://www.chendujin.com/categories/MySQL/"/>
+    
+    
+    <category term="MySQL" scheme="https://www.chendujin.com/tags/MySQL/"/>
+    
+    <category term="MySQL日志" scheme="https://www.chendujin.com/tags/MySQL%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Golang 的 defer 关键字使用注意事项</title>
+    <link href="https://www.chendujin.com/posts/96a822e5.html"/>
+    <id>https://www.chendujin.com/posts/96a822e5.html</id>
+    <published>2022-08-23T13:04:48.000Z</published>
+    <updated>2023-12-01T09:03:52.625Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Golang 提供了 &lt;code&gt;defer&lt;/code&gt; 关键字，用于函数退出前执行收尾工作，基本的使用方法就不再赘述了。总结了一些可能踩坑的地方。&lt;/p&gt;
+&lt;h2 id=&quot;defer-执行顺序&quot;&gt;&lt;a href=&quot;#defer-执行顺序&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go入门基础" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="其他" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="Go入门基础" scheme="https://www.chendujin.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>计数排序</title>
+    <link href="https://www.chendujin.com/posts/cb625b07.html"/>
+    <id>https://www.chendujin.com/posts/cb625b07.html</id>
+    <published>2022-05-26T13:03:02.000Z</published>
+    <updated>2023-12-01T09:03:52.634Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;Am4tQ&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;计数排序&quot;&gt;&lt;a href=&quot;#计数排序&quot; class=&quot;headerlink&quot; title=&quot;计数排序&quot;&gt;&lt;/a&gt;计数排序&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;计数排序(Counting</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>堆排序</title>
+    <link href="https://www.chendujin.com/posts/c2a5fdc5.html"/>
+    <id>https://www.chendujin.com/posts/c2a5fdc5.html</id>
+    <published>2022-05-14T12:26:48.000Z</published>
+    <updated>2023-12-01T09:03:52.631Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;FU31z&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;堆排序&quot;&gt;&lt;a href=&quot;#堆排序&quot; class=&quot;headerlink&quot; title=&quot;堆排序&quot;&gt;&lt;/a&gt;堆排序&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;堆排序(Heapsort)&lt;/strong&gt;</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>桶排序</title>
+    <link href="https://www.chendujin.com/posts/9fe164cc.html"/>
+    <id>https://www.chendujin.com/posts/9fe164cc.html</id>
+    <published>2022-05-10T12:08:01.000Z</published>
+    <updated>2023-12-01T09:03:52.633Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;xAPiy&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;桶排序&quot;&gt;&lt;a href=&quot;#桶排序&quot; class=&quot;headerlink&quot; title=&quot;桶排序&quot;&gt;&lt;/a&gt;桶排序&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;桶排序(Bucket</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>快速排序</title>
+    <link href="https://www.chendujin.com/posts/ff8068c0.html"/>
+    <id>https://www.chendujin.com/posts/ff8068c0.html</id>
+    <published>2022-05-06T13:15:23.000Z</published>
+    <updated>2023-12-01T09:03:52.632Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;wy3W5&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>希尔排序</title>
+    <link href="https://www.chendujin.com/posts/1ac49179.html"/>
+    <id>https://www.chendujin.com/posts/1ac49179.html</id>
+    <published>2022-05-02T12:33:56.000Z</published>
+    <updated>2023-12-01T09:03:52.632Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;希尔排序(Shell</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>归并排序</title>
+    <link href="https://www.chendujin.com/posts/1599bffe.html"/>
+    <id>https://www.chendujin.com/posts/1599bffe.html</id>
+    <published>2022-04-29T12:45:21.000Z</published>
+    <updated>2023-12-01T09:03:52.632Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;Abrkl&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot; title=&quot;实现原理&quot;&gt;&lt;/a&gt;实现原理&lt;/h2&gt;&lt;p&gt;今天介绍比前面三种排序算法性能更好的排序算法 ——</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>选择排序</title>
+    <link href="https://www.chendujin.com/posts/43d00a99.html"/>
+    <id>https://www.chendujin.com/posts/43d00a99.html</id>
+    <published>2022-04-26T12:22:31.000Z</published>
+    <updated>2023-12-01T09:03:52.635Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;RLmhH&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>插入排序</title>
+    <link href="https://www.chendujin.com/posts/96555fb2.html"/>
+    <id>https://www.chendujin.com/posts/96555fb2.html</id>
+    <published>2022-04-22T11:36:22.000Z</published>
+    <updated>2023-12-01T09:03:52.633Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;mRQQ0&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;实现原理&quot;&gt;&lt;a href=&quot;#实现原理&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>冒泡排序</title>
+    <link href="https://www.chendujin.com/posts/14e6f1eb.html"/>
+    <id>https://www.chendujin.com/posts/14e6f1eb.html</id>
+    <published>2022-04-18T11:23:45.000Z</published>
+    <updated>2023-12-01T09:03:52.631Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;要给大家介绍的是&lt;strong&gt;基于选择&lt;/strong&gt;的排序算法，常见&lt;strong&gt;基于选择&lt;/strong&gt;的排序算法有&lt;strong&gt;冒泡排序&lt;/strong&gt;、&lt;strong&gt;插入排序&lt;/strong&gt;、&lt;strong&gt;选择排序&lt;/strong&gt;、&lt;strong</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>八种排序算法的稳定性分析</title>
+    <link href="https://www.chendujin.com/posts/124e81d.html"/>
+    <id>https://www.chendujin.com/posts/124e81d.html</id>
+    <published>2022-04-16T13:58:54.000Z</published>
+    <updated>2023-12-01T09:03:52.631Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;TIPs&lt;/strong&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一个算法稳定是指，如果A=B，A在B前面，在进行排序算法后，仍然保持A在B前面。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;算法分类&lt;/strong&gt;：&lt;br&gt;&lt;br&gt;常见</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/tags/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>排序算法场景概念解读</title>
+    <link href="https://www.chendujin.com/posts/329e504d.html"/>
+    <id>https://www.chendujin.com/posts/329e504d.html</id>
+    <published>2022-04-06T14:16:00.000Z</published>
+    <updated>2023-12-01T09:03:52.633Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;什么是稳定排序、原地排序、时间复杂度、空间复杂度：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;稳定排序：如果 a 原本在 b 的前面，且 a == b，排序之后 a 仍然在 b 的前面，则为稳定排序。&lt;/li&gt;
+&lt;li&gt;非稳定排序：如果 a 原本在 b</summary>
+        
+      
+    
+    
+    
+    <category term="Go数据结构与算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+    <category term="常见算法" scheme="https://www.chendujin.com/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="数据结构与算法" scheme="https://www.chendujin.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实现自己的Composer包</title>
+    <link href="https://www.chendujin.com/posts/5339145e.html"/>
+    <id>https://www.chendujin.com/posts/5339145e.html</id>
+    <published>2022-04-05T05:55:37.000Z</published>
+    <updated>2023-12-01T09:03:52.632Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;09RVv&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;一、Composer简介&quot;&gt;&lt;a href=&quot;#一、Composer简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="PHP" scheme="https://www.chendujin.com/categories/PHP/"/>
+    
+    
+    <category term="PHP" scheme="https://www.chendujin.com/tags/PHP/"/>
+    
+    <category term="composer" scheme="https://www.chendujin.com/tags/composer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go跨平台编译(交叉编译)</title>
+    <link href="https://www.chendujin.com/posts/e4d19241.html"/>
+    <id>https://www.chendujin.com/posts/e4d19241.html</id>
+    <published>2022-03-25T13:12:21.000Z</published>
+    <updated>2023-12-01T09:03:52.626Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;flj2V&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;跨平台编译&quot;&gt;&lt;a href=&quot;#跨平台编译&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="Go入门基础" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="其他" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="Go入门基础" scheme="https://www.chendujin.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="编译" scheme="https://www.chendujin.com/tags/%E7%BC%96%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go-内置类型和内置函数</title>
+    <link href="https://www.chendujin.com/posts/4312b66a.html"/>
+    <id>https://www.chendujin.com/posts/4312b66a.html</id>
+    <published>2022-03-20T11:36:11.000Z</published>
+    <updated>2023-12-01T09:03:52.625Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;IZWUv&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-内置类型&quot;&gt;&lt;a href=&quot;#1-内置类型&quot; class=&quot;headerlink&quot; title=&quot;1. 内置类型&quot;&gt;&lt;/a&gt;1. 内置类型&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="Go入门基础" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+    <category term="其他" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
+    
+    
+    <category term="Go入门基础" scheme="https://www.chendujin.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+</feed>

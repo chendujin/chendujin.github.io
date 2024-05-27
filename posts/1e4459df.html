@@ -1,0 +1,1135 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon_apple.png">
+  <link rel="icon" href="/img/favicon_default.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Thomas">
+  <meta name="keywords" content="技术博客 PHP Python Java Go Vue">
+  
+    <meta name="description" content="MySQL 性能分析explain123456explain select * from users;-- 本意为显示警告信息。但是和 explain 一块儿使用，就会显示出优化后的 sql。需要注意使用顺序。（只能在 mysql cli 中才会有结果）show warnings;   最重要的 5 个字段是：id、type、key、rows、Extra   id： select 查询的序列号，包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 性能分析">
+<meta property="og:url" content="https://www.chendujin.com/posts/1e4459df.html">
+<meta property="og:site_name" content="托马斯 の 博客">
+<meta property="og:description" content="MySQL 性能分析explain123456explain select * from users;-- 本意为显示警告信息。但是和 explain 一块儿使用，就会显示出优化后的 sql。需要注意使用顺序。（只能在 mysql cli 中才会有结果）show warnings;   最重要的 5 个字段是：id、type、key、rows、Extra   id： select 查询的序列号，包">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-11T09:26:21.000Z">
+<meta property="article:modified_time" content="2023-12-01T09:03:52.628Z">
+<meta property="article:author" content="Thomas">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="性能优化">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+     <!-- 一言 --> <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script> 
+  
+  <title>MySQL 性能分析 - 托马斯 の 博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/fluid-extention.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/gradient.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/scroll.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3975823_gtgcqt26r9l.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.chendujin.com","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading/loading3.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"qCMJVUHYsbbH9Q1lTT9GgUAt-gzGzoHsz","app_key":"ur8rtnOJICggyXqctm8jEY3L","server_url":"https://qcmjvuhy.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"gtag":null},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+<link rel="alternate" href="/atom.xml" title="托马斯 の 博客" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>托马斯 の 博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-golang"></i>
+                <span>Go系列</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" target="_self">
+                    <i class="iconfont icon-caozuoxitong"></i>
+                    <span>计算机基础</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/" target="_self">
+                    <i class="iconfont icon-pythonrumenjichu"></i>
+                    <span>Go入门基础</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Go%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" target="_self">
+                    <i class="iconfont icon-shejimoshi"></i>
+                    <span>Go设计模式</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Go%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" target="_self">
+                    <i class="iconfont icon-beehive-full"></i>
+                    <span>Go数据结构与算法</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-docker2"></i>
+                <span>Docker系列</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/Docker/" target="_self">
+                    <i class="iconfont icon-docker-04"></i>
+                    <span>Docker入门基础</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-mian-K8S"></i>
+                <span>K8s系列</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/categories/K8s/" target="_self">
+                    <i class="iconfont icon-ks"></i>
+                    <span>K8s架构</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-2"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-guidangxiangmu"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-guanyuwo"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-qita3"></i>
+                <span>其他</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/tags/" target="_self">
+                    <i class="iconfont icon-tags-fill"></i>
+                    <span>标签</span>
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" href="/links/" target="_self">
+                    <i class="iconfont icon-link-fill"></i>
+                    <span>友链</span>
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bgpost.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MySQL 性能分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-11 17:26" pubdate>
+          2021年7月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MySQL 性能分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="MySQL-性能分析"><a href="#MySQL-性能分析" class="headerlink" title="MySQL 性能分析"></a>MySQL 性能分析</h1><h2 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h2><figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs mysql"><br>explain select * from users;<br><br>-- 本意为显示警告信息。但是和 explain 一块儿使用，就会显示出优化后的 sql。需要注意使用顺序。（只能在 mysql cli 中才会有结果）<br>show warnings;<br><br></code></pre></td></tr></tbody></table></figure>
+
+<blockquote>
+<p>最重要的 5 个字段是：id、type、key、rows、Extra</p>
+</blockquote>
+<ul>
+<li><strong>id</strong>： select 查询的序列号，包含一组数字，表示查询中执行 select 子句或操作表的顺序</li>
+</ul>
+<ol>
+<li>id 相同，执行顺序由上至下</li>
+<li>id 不同，如果是子查询，id 的序号会递增，id 值越大优先级越高，越先被执行</li>
+<li>id 有相同也有不同的，id 值越大优先级越高越先被执行，id 值相同的按由上到下执行</li>
+</ol>
+<ul>
+<li><strong>select_type</strong>：查询的类型，主要是用于区别普通查询，联合查询，子查询等的复杂查询</li>
+</ul>
+<ol>
+<li>simple ： 简单的 select 查询，查询中不包含子查询或者 union</li>
+<li>primary ：查询中若包含任何复杂的子部份，最 外层查询则被标记为 primary</li>
+<li>subquery ： 在 select 或 where 列表中包含子查询</li>
+<li>derived ： 在 from 列表中包含的子查询被标记为 derived（衍生）MySQL 会递归执行这些子查询，把结果放在临时表里。</li>
+<li>union ： 若第二个 select 出现在 union 之后，则被标记为 union：若 union 包含在 from 子句的子查询中，外层 select 将被标记为： derived</li>
+<li>union result ： 从 union 表获取结果的 select</li>
+</ol>
+<ul>
+<li><strong>table</strong> ： 显示这一行的数据是关于哪张表的</li>
+<li><strong>type</strong> ： 访问类型排序<ul>
+<li>常用的从最好到最差依次是，system &gt; const &gt; eq_ref &gt; ref &gt; range &gt; index &gt; ALL</li>
+<li>完整的从最好到最差依次是 system &gt; const &gt; eq_ref &gt; ref &gt; fulltext &gt; ref_or_null &gt; index_merge &gt; unique_subquery &gt; index_subquery &gt; range &gt; ALL</li>
+<li>一般来说， 得保证查询至少达到 range 级别，最好能达到 ref 级别</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>system ：表只有一行记录（等于系统表），这是 const 类型的特例，平时不会出现，这个也可以忽略不计</li>
+<li>const ： 表示通过索引一次就找到了，const 用于比较 primary key 或者 unique 索引。因为只匹配一行数据，所以很快。如将主键置于 where 列表中，MySQL 就能将该查询转换为一个常量</li>
+<li>eq_ref : 唯一性索引扫描，对于每个索引键，表中只有一条记录与之匹配。常见于主键或唯一索引扫描。</li>
+<li>ref ： 非唯一性索引扫描，返回匹配某个单独值的所有行，本质上也是一种索引访问，它返回所有匹配某个单独值的行，然而，它可能会找到多个符合条件的行，所以他应该属于查找和扫描的混合体。</li>
+<li>range ：只检索给定范围的行，使用一个索引来选择行，key 列显示使用了哪个索引，一般就是在你的 where 语句中出现了 between 、&lt; 、&gt; 、in 等的查询。这种范围扫描索引扫描比全表扫描要好，因为它只需要开始于索引的某一点，而结束于另一点，不用扫描全部索引</li>
+<li>index ： Full Index Scan，Index 与 ALL 区别为 index 类型只遍历索引树。这通常比 ALL 快，因为索引文件通常比数据文件小。（也就是说虽然 all 和 index 都是读全表，但 index 是从索引中读取的，而 all 是从硬盘中读的）</li>
+<li>all ： Full Table Scan，将遍历全表以找到匹配的行</li>
+</ol>
+<p><strong>一般来说，得保证查询至少达到 range 级别，最好能达到 ref</strong></p>
+<ul>
+<li><strong>possible_keys</strong> ：显示可能应用在这张表中的索引，一个或多个。查询涉及到的字段上若存在索引，则该索引将被列出，<strong>但不一定被查询实际使用</strong></li>
+<li><strong>key</strong> ： 实际使用的索引。如果为 null，则没有使用索引。查询中若使用了覆盖索引，则该索引仅出现在 key 列表中。</li>
+<li><strong>key_len</strong> : 表示索引中使用的字节数，可通过该列计算查询中使用的索引的长度。在不损失精确性的情况下，长度越短越好。key_len 显示的值为索引字段的最大可能长度，并非实际使用长度，即 key_len 是根据表定义计算而得，不是通过表内检索出的</li>
+<li><strong>ref</strong> ： 显示索引的哪一列被使用了，如果可能的话，是一个常数。哪些列或常量被用于查找索引列上的值</li>
+<li><strong>rows</strong> ：根据表统计信息及索引选用情况，大致估算出找到所需的记录所需要读取的行数（行数越小越好）</li>
+<li><strong>Extra</strong> ：包含不适合在其它列中显示但十分重要的额外信息</li>
+</ul>
+<ol>
+<li>Using filesort ： 说明 mysql 会对数据使用一个外部的索引排序，而不是按照表内的索引顺序进行读取。MySQL 中无法利用索引完成的排序操作称为“文件排序”。<strong>九死一生了，效率比较差</strong></li>
+<li>Using temporary ：使用了临时表保存中间结果，MySQL 在对查询结果排序时使用临时表。常用于排序 order by 和分组查询 group by。<strong>十死无生，效率最差！</strong></li>
+<li>Using index ： 表示相应的 select 操作中使用了覆盖索引（Covering index），避免访问了表的数据行，效率不错！如果同时出现 using where ，表明索引被用来执行索引键值的查找；如果没有同时出现 using where ，表明索引用来读取数据而非执行查找动作。</li>
+<li>Using where ：表明使用了 where 过滤</li>
+<li>using join buffer ：使用了连接缓存</li>
+<li>impossible where ： where 子句的值总是 false，不能用来获取任何元组</li>
+<li>select tables optimized away ：在没有 group by 子句的情况下，基于索引优化 min/max 操作或者对于 MyISAM 存储引擎优化 count(*) 操作，不必等到执行阶段再进行计算，查询执行计划生成的阶段即完成优化。</li>
+<li>distinct ：优化 distinct 操作，在找到第一匹配的元组后即停止找同样值的动作</li>
+</ol>
+<h2 id="查询截取分析"><a href="#查询截取分析" class="headerlink" title="查询截取分析"></a>查询截取分析</h2><ul>
+<li>通俗来讲</li>
+</ul>
+<ol>
+<li>观察，至少跑 1 天 ，看看生产的慢 sql 情况。</li>
+<li>开启慢查询日志，设置阈值，比如超过 5 秒钟的就是慢 sql，并将它抓取出来。</li>
+<li>explain + 慢 sql 分析</li>
+<li>show profile</li>
+<li>运维经理或者 DBA，进行 sql 数据库服务器的参数调优。</li>
+</ol>
+<ul>
+<li>学术说法</li>
+</ul>
+<ol>
+<li>慢查询的开启并捕获</li>
+<li>explain + 慢 sql 分析</li>
+<li>show profile 查询 sql 在 mysql 服务器里面的执行细节和生命周期情况</li>
+<li>sql 数据库服务器的参数调优</li>
+</ol>
+<h3 id="提高-order-by-的速度"><a href="#提高-order-by-的速度" class="headerlink" title="提高 order by 的速度"></a>提高 order by 的速度</h3><ol>
+<li>order by 时，select * 是一个大忌，只查询需要的字段，这点非常重要。在这里的影响是：</li>
+</ol>
+<ul>
+<li>当查询的字段大小总和小于 max_length_for_sort_data 而且排序字段不是 text|blob 类型时，会用改进后的算法——单路排序，否则用老算法——多路排序。</li>
+<li>两种算法的数据都有可能超出 sort_buffer 的容量，超出之后，会创建 tmp 文件进行合并排序，导致多次 I/O，但是用单路排序算法的风险会更大一些，所以要提高 sort_buffer_size</li>
+</ul>
+<ol start="2">
+<li>尝试提高 sort_buffer_size 不管用哪种算法，提高这个参数都会提高效率，当然，要根据系统的能力去提高，因为这个参数是针对每个进程的</li>
+<li>尝试提高 max_length_for_sort_data 提高这个参数，会增加用改进算法的概率，但是如果设的太高，数据总容量超出 sort_buffer_size 的概率就增大，明显症状是高的磁盘 I/O 活动和低的处理器使用率。</li>
+</ol>
+<h3 id="为排序使用索引"><a href="#为排序使用索引" class="headerlink" title="为排序使用索引"></a>为排序使用索引</h3><ul>
+<li>MySQL 两种排序方式：文件排序或扫描有序索引排序</li>
+<li>MySQL 能为排序与查询使用相同的索引</li>
+</ul>
+<p>KEY a_b_c (a,b,c)</p>
+<ol>
+<li>order by 能使用索引最左前缀<br>ORDER BY a<br>ORDER BY a,b<br>ORDER BY a,b,c<br>ORDER BY a DESC, b DESC, c DESC</li>
+<li>如果 where 使用索引的最左前缀定义为常量，则 order by 能使用索引<br>WHERE a = const ORDER BY b,c<br>WHERE a = const AND b = const ORDER BY c<br>WHERE a = const ORDER BY b,c<br>WHERE a = const AND b &gt; const ORDER BY b,c</li>
+</ol>
+<h2 id="开启慢查询日志"><a href="#开启慢查询日志" class="headerlink" title="开启慢查询日志"></a>开启慢查询日志</h2><ul>
+<li>查看是否开启及如何开启慢查询日志</li>
+</ul>
+<figure class="highlight csharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-meta"># 查看是否开启了慢查询日志</span><br>show variables like <span class="hljs-string">'%slow_query_log%'</span>;<br><br><span class="hljs-meta"># 开启慢查询日志（临时开启）</span><br><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> slow_query_log = <span class="hljs-number">1</span>;<br></code></pre></td></tr></tbody></table></figure>
+
+<p>如果要永久生效，就必须修改配置文件 my.cnf （其他系统变量也是如此）<br>修改 my.cnf 文件，[mysqld] 下增加或修改参数 slow_query_log 和 slow_query_log_file 后，然后重启 MySQL 服务器。</p>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">slow_query_log</span> = <span class="hljs-number">1</span> <br><span class="hljs-attr">slow_query_log_file</span> = /var/lib/mysql/slow-query.log<br></code></pre></td></tr></tbody></table></figure>
+
+<p>慢查询日志是由参数 long_query_time 控制，默认情况下 long_query_time 的值为 10 秒，可以使用以下命令查看</p>
+<figure class="highlight gams"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams">show <span class="hljs-keyword">variables</span> like <span class="hljs-comment">'long_query_time%'</span>;<br></code></pre></td></tr></tbody></table></figure>
+
+<p>可以使用命令修改，也可以在 my.cnf 参数里面修改。<br>假如运行时间正好等于 long_query_time 的情况，并不会被记录下来。也就是说，在 mysql 源码里是 <strong>判断大于 long_query_time，而非大于等于</strong></p>
+<p>设置阙值到 3 秒钟的就是慢 sql</p>
+<figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-keyword">set</span> <span class="hljs-keyword">global</span> long_query_time = <span class="hljs-number">3</span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>设置慢查询日志阙值后看不出变化？</p>
+<ol>
+<li>需要重新连接或新开一个会话才能看到修改值</li>
+<li>或者直接使用以下命令也可以看到修改后的结果</li>
+</ol>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">global</span> variables <span class="hljs-keyword">like</span> <span class="hljs-string">'long_query_time'</span>;<br></code></pre></td></tr></tbody></table></figure>
+
+<p>如何测试？</p>
+<figure class="highlight autoit"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><span class="hljs-meta"># 模拟查询超过 4 秒钟</span><br><span class="hljs-keyword">select</span> <span class="hljs-built_in">sleep</span>(<span class="hljs-number">4</span>)<span class="hljs-comment">;</span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>查看慢查询日志中记录了有多少条慢 sql</p>
+<figure class="highlight sql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">show</span> <span class="hljs-keyword">global</span> status <span class="hljs-keyword">like</span> <span class="hljs-string">'%Slow_queries%'</span>;<br></code></pre></td></tr></tbody></table></figure>
+
+<h3 id="慢查询分析工具-mysqldumpslow"><a href="#慢查询分析工具-mysqldumpslow" class="headerlink" title="慢查询分析工具 mysqldumpslow"></a>慢查询分析工具 mysqldumpslow</h3><p>可用参数：</p>
+<ul>
+<li>s : 表示按照何种方式排序</li>
+<li>c ：访问次数</li>
+<li>l ：锁定时间</li>
+<li>r ：返回记录</li>
+<li>t ：查询时间</li>
+<li>al ：平均锁定时间</li>
+<li>ar ：平均返回记录数</li>
+<li>at ：平均查询时间</li>
+<li>t ：即返回前面多少条的数据</li>
+<li>g ：后边搭配一个正则匹配模式，大小写不敏感的</li>
+</ul>
+<figure class="highlight stata"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs stata"># 得到返回记录集最多的 10 条 sql<br>mysqldumpslow -s r -t 10 /<span class="hljs-keyword">var</span>/lib/mysql/slow-<span class="hljs-keyword">query</span>.<span class="hljs-keyword">log</span><br><br># 得到访问次数最多的 10 条 sql<br>mysqldumpslow -s c -t 10 /<span class="hljs-keyword">var</span>/lib/mysql/slow-<span class="hljs-keyword">query</span>.<span class="hljs-keyword">log</span><br><br># 得到按照时间排序的前 10 条里面包含左连接的查询语句<br>mysqldumpslow -s t -t 10 -<span class="hljs-keyword">g</span> <span class="hljs-string">"left join"</span> /<span class="hljs-keyword">var</span>/lib/mysql/slow-<span class="hljs-keyword">query</span>.<span class="hljs-keyword">log</span><br><br>另外建议在使用这些命令时结合 | 和 <span class="hljs-keyword">more</span> 使用，否则有可能出现爆屏情况<br>mysqldumpslow -s r -t 10 /<span class="hljs-keyword">var</span>/lib/mysql/slow-<span class="hljs-keyword">query</span>.<span class="hljs-keyword">log</span> | <span class="hljs-keyword">more</span><br></code></pre></td></tr></tbody></table></figure>
+
+<h2 id="Show-Profile-（可以看到每一条-sql-执行的生命周期）"><a href="#Show-Profile-（可以看到每一条-sql-执行的生命周期）" class="headerlink" title="Show Profile （可以看到每一条 sql 执行的生命周期）"></a>Show Profile （可以看到每一条 sql 执行的生命周期）</h2><p>是 mysql 提供可以用来分析当前会话中语句执行的资源消耗情况。可以用于 sql 的调优的测量。<br>默认情况下，参数处于关闭状态，并保存最近 15 次的运行结果。</p>
+<ol>
+<li>查看是否已经开启</li>
+</ol>
+<figure class="highlight nginx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-comment"># 查看是否已经开启</span><br><span class="hljs-attribute">show</span> VARIABLES like <span class="hljs-string">'profiling'</span>;<br><br><span class="hljs-comment"># 如果没有开启的话，则开启</span><br><span class="hljs-attribute">set</span> profiling = <span class="hljs-literal">on</span>;<br></code></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>运行各种查询语句</li>
+<li>使用以下命令，即可看到以上的查询语句</li>
+</ol>
+<figure class="highlight abnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf">show profiles<span class="hljs-comment">;</span><br></code></pre></td></tr></tbody></table></figure>
+
+<ol start="4">
+<li>诊断 sql</li>
+</ol>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><span class="hljs-keyword">show </span>profile cpu,<span class="hljs-keyword">block </span>io for query <span class="hljs-number">1</span><span class="hljs-comment">;（上一步问题 sql 前面的数字号码）</span><br></code></pre></td></tr></tbody></table></figure>
+
+<p>show profile 的可用参数为：</p>
+<ul>
+<li>all ：显示所有的开销信息</li>
+<li>block io ：显示块 io 相关开销</li>
+<li>context switches ：上下文切换相关开销</li>
+<li>cpu ：显示 cpu 相关开销信息</li>
+<li>ipc ：显示发送和接收相关开销信息</li>
+<li>memory ：显示内存相关开销信息</li>
+<li>page faults ： 显示页面错误相关开销信息</li>
+<li>source ：显示和 Source_function，Source_file，Source_line 相关的开销信息</li>
+<li>swaps ：显示交换次数相关开销的信息</li>
+</ul>
+<h3 id="日常开发需要注意项"><a href="#日常开发需要注意项" class="headerlink" title="日常开发需要注意项"></a>日常开发需要注意项</h3><ol>
+<li>converting HEAP to MyISAM 查询结果太大，内存都不够用了往磁盘上搬了。</li>
+<li>Creating tmp table 创建临时表。（拷贝数据到临时表，用完再删除）</li>
+<li>Copying to tmp table on disk 把内存中临时表复制到磁盘，危险！</li>
+<li>locked 锁表了</li>
+</ol>
+<h2 id="全局查询日志"><a href="#全局查询日志" class="headerlink" title="全局查询日志"></a>全局查询日志</h2><blockquote>
+<p>永远不要在生产环境中开启这个功能！</p>
+</blockquote>
+<ul>
+<li>在配置文件中开启<br>在 mysql 的 my.cnf 中，设置如下：</li>
+</ul>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment"># 开启</span><br><span class="hljs-attr">general_log</span> = <span class="hljs-number">1</span><br><span class="hljs-comment"># 记录日志文件的路径</span><br><span class="hljs-attr">general_log_file</span> = /path/logfile<br><span class="hljs-comment"># 输出格式</span><br><span class="hljs-attr">log_output</span> = FILE<br></code></pre></td></tr></tbody></table></figure>
+
+<ul>
+<li>直接执行 sql 语句开启</li>
+</ul>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 开启</span><br><span class="hljs-built_in">set</span> global <span class="hljs-attribute">general_log</span>=1;<br><span class="hljs-comment"># 用表格的方式记录查询日志</span><br><span class="hljs-built_in">set</span> global log_output = <span class="hljs-string">'TABLE'</span>;<br><span class="hljs-comment"># 此后，你所编写的 sql 语句，将会记录到 mysql 库里的 general_log 表</span><br>select * <span class="hljs-keyword">from</span> mysql.general_log;<br></code></pre></td></tr></tbody></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MySQL/" class="category-chain-item">MySQL</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MySQL/" class="print-no-link">#MySQL</a>
+      
+        <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" class="print-no-link">#性能优化</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MySQL 性能分析</div>
+      <div>https://www.chendujin.com/posts/1e4459df.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>Thomas</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年7月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/b17a8184.html" title="MySQL 三范式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MySQL 三范式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/6b30c31b.html" title="MySQL 主从复制">
+                        <span class="hidden-mobile">MySQL 主从复制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
+        var options = Object.assign(
+          {"serverURL":"https://blog-if17rl0bm-chendujin.vercel.app/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://unpkg.com/@waline/emojis@1.0.1/weibo","https://unpkg.com/@waline/emojis@1.0.1/alus","https://unpkg.com/@waline/emojis@1.0.1/bilibili","https://unpkg.com/@waline/emojis@1.0.1/qq","https://unpkg.com/@waline/emojis@1.0.1/tw-weather","https://unpkg.com/@waline/emojis@1.0.1/tw-flag"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"placeholder":"说点什么吧 ...","avatar":"retro","requiredFields":["nick"],"highlight":true,"avatarForce":false,"visitor":true,"avatarCDN":"https://seccdn.libravatar.org/avatar/"},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+    <!-- 备案信息 ICP for China -->
+    <div class="beian">
+  <span>
+    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">
+      粤ICP备19152558号
+    </a>
+  </span>
+  
+    
+      <span>
+        <a
+          href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=19152558"
+          rel="nofollow noopener"
+          class="beian-police"
+          target="_blank"
+        >
+          
+            <span style="visibility: hidden; width: 0">|</span>
+            <img src="/img/police_beian.png" srcset="/img/loading/loading3.gif" lazyload alt="police-icon"/>
+          
+          <span>粤ICP备19152558号-1</span>
+        </a>
+      </span>
+    
+  
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicRibbon.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/Cherry.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/EmoryHuang/BlogBeautify@1.1/DynamicLine.min.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
