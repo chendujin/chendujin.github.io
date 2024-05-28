@@ -92,15 +92,6 @@
   </url>
   
   <url>
-    <loc>https://www.chendujin.com/posts/329e504d.html</loc>
-    
-    <lastmod>2023-12-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.chendujin.com/posts/96555fb2.html</loc>
     
     <lastmod>2023-12-01</lastmod>
@@ -119,6 +110,15 @@
   </url>
   
   <url>
+    <loc>https://www.chendujin.com/posts/329e504d.html</loc>
+    
+    <lastmod>2023-12-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://www.chendujin.com/posts/9fe164cc.html</loc>
     
     <lastmod>2023-12-01</lastmod>
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://www.chendujin.com/posts/1ac49179.html</loc>
+    <loc>https://www.chendujin.com/posts/5339145e.html</loc>
     
     <lastmod>2023-12-01</lastmod>
     
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://www.chendujin.com/posts/5339145e.html</loc>
+    <loc>https://www.chendujin.com/posts/1ac49179.html</loc>
     
     <lastmod>2023-12-01</lastmod>
     
@@ -254,7 +254,7 @@
   </url>
   
   <url>
-    <loc>https://www.chendujin.com/posts/6fa24dc0.html</loc>
+    <loc>https://www.chendujin.com/posts/b17a8184.html</loc>
     
     <lastmod>2023-12-01</lastmod>
     
@@ -263,7 +263,7 @@
   </url>
   
   <url>
-    <loc>https://www.chendujin.com/posts/b17a8184.html</loc>
+    <loc>https://www.chendujin.com/posts/6fa24dc0.html</loc>
     
     <lastmod>2023-12-01</lastmod>
     
@@ -335,15 +335,6 @@
   </url>
   
   <url>
-    <loc>https://www.chendujin.com/posts/59b529b7.html</loc>
-    
-    <lastmod>2023-12-01</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://www.chendujin.com/posts/133182d1.html</loc>
     
     <lastmod>2023-12-01</lastmod>
@@ -354,6 +345,15 @@
   
   <url>
     <loc>https://www.chendujin.com/posts/a8b7793d.html</loc>
+    
+    <lastmod>2023-12-01</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.chendujin.com/posts/59b529b7.html</loc>
     
     <lastmod>2023-12-01</lastmod>
     
@@ -491,6 +491,13 @@
   </url>
   
   <url>
+    <loc>https://www.chendujin.com/tags/MySQL/</loc>
+    <lastmod>2024-05-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.chendujin.com/tags/MacOS/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -499,13 +506,6 @@
   
   <url>
     <loc>https://www.chendujin.com/tags/Homebrew/</loc>
-    <lastmod>2024-05-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.chendujin.com/tags/MySQL/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -661,14 +661,14 @@
   </url>
   
   <url>
-    <loc>https://www.chendujin.com/categories/MacOS/</loc>
+    <loc>https://www.chendujin.com/categories/MySQL/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.chendujin.com/categories/MySQL/</loc>
+    <loc>https://www.chendujin.com/categories/MacOS/</loc>
     <lastmod>2024-05-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
