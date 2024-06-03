@@ -6,7 +6,7 @@
   <link href="https://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="https://www.chendujin.com/"/>
-  <updated>2023-12-01T09:03:52.626Z</updated>
+  <updated>2024-06-03T09:02:43.675Z</updated>
   <id>https://www.chendujin.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Drone与GitLab实现Laravel项目自动构建、自动部署</title>
+    <link href="https://www.chendujin.com/posts/464192a3.html"/>
+    <id>https://www.chendujin.com/posts/464192a3.html</id>
+    <published>2024-06-03T09:00:28.000Z</published>
+    <updated>2024-06-03T09:02:43.675Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;a name=&quot;oKAoc&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Laravel-项目目录结构&quot;&gt;&lt;a href=&quot;#Laravel-项目目录结构&quot; class=&quot;headerlink&quot; title=&quot;Laravel 项目目录结构&quot;&gt;&lt;/a&gt;Laravel</summary>
+        
+      
+    
+    
+    
+    <category term="Docker" scheme="https://www.chendujin.com/categories/Docker/"/>
+    
+    
+    <category term="Docker" scheme="https://www.chendujin.com/tags/Docker/"/>
+    
+    <category term="Drone CICD" scheme="https://www.chendujin.com/tags/Drone-CICD/"/>
+    
+  </entry>
   
   <entry>
     <title>Laravel依赖注入原理和控制反转原理</title>
@@ -569,34 +597,6 @@
     <category term="Go入门基础" scheme="https://www.chendujin.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
     
     <category term="编译" scheme="https://www.chendujin.com/tags/%E7%BC%96%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Go-内置类型和内置函数</title>
-    <link href="https://www.chendujin.com/posts/4312b66a.html"/>
-    <id>https://www.chendujin.com/posts/4312b66a.html</id>
-    <published>2022-03-20T11:36:11.000Z</published>
-    <updated>2023-12-01T09:03:52.625Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;&lt;a name=&quot;IZWUv&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;1-内置类型&quot;&gt;&lt;a href=&quot;#1-内置类型&quot; class=&quot;headerlink&quot; title=&quot;1. 内置类型&quot;&gt;&lt;/a&gt;1. 内置类型&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    <category term="Go入门基础" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
-    
-    <category term="其他" scheme="https://www.chendujin.com/categories/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/%E5%85%B6%E4%BB%96/"/>
-    
-    
-    <category term="Go入门基础" scheme="https://www.chendujin.com/tags/Go%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/"/>
     
   </entry>
   
