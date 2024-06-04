@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://cdn.l2xy.com/post_img/Drone%E4%B8%8EGitLab%E5%AE%9E%E7%8E%B0Laravel%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E3%80%81%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/image13.png">
 <meta property="og:image" content="https://cdn.l2xy.com/post_img/Drone%E4%B8%8EGitLab%E5%AE%9E%E7%8E%B0Laravel%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E3%80%81%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/image14.png">
 <meta property="article:published_time" content="2024-06-03T09:00:28.000Z">
-<meta property="article:modified_time" content="2024-06-04T08:02:20.046Z">
+<meta property="article:modified_time" content="2024-06-04T08:30:49.804Z">
 <meta property="article:author" content="托马斯">
 <meta property="article:tag" content="Docker">
 <meta property="article:tag" content="Drone CICD">
@@ -392,7 +392,7 @@
         
         
         
-          16 分钟
+          17 分钟
         
       </span>
     
@@ -488,7 +488,9 @@
 </blockquote>
 <figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker-compose up -d<br></code></pre></td></tr></tbody></table></figure>
 <p><a name="wvH9i"></a></p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>Drone 用户名需和gitlab登录用户一致，才会有Project Setting选项，我的 gitlab和drone都是 chendujin 可见。<br><img src="https://cdn.l2xy.com/post_img/Drone%E4%B8%8EGitLab%E5%AE%9E%E7%8E%B0Laravel%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E3%80%81%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/image6.png" srcset="/img/loading/loading3.gif" lazyload><br><a name="lD1TH"></a></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><blockquote>
+<p>Trusted 选项，一般在部署docker项目时需要打开，如果不打开，部署docker项目时，无法使用挂在功能，即volume。<br>Drone 用户名需和gitlab登录用户一致，才会有Project Setting选项，我的 gitlab和drone都是 chendujin 可见。<br><img src="https://cdn.l2xy.com/post_img/Drone%E4%B8%8EGitLab%E5%AE%9E%E7%8E%B0Laravel%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E3%80%81%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/image6.png" srcset="/img/loading/loading3.gif" lazyload><br><a name="lD1TH"></a></p>
+</blockquote>
 <h2 id="登录-Drone-控制面板"><a href="#登录-Drone-控制面板" class="headerlink" title="登录 Drone 控制面板"></a>登录 Drone 控制面板</h2><p>浏览器访问14.103.55.227:4000，点击继续Continue，自动跳转gitlab，授权即可进入drone。<br><img src="https://cdn.l2xy.com/post_img/Drone%E4%B8%8EGitLab%E5%AE%9E%E7%8E%B0Laravel%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E3%80%81%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/image7.png" srcset="/img/loading/loading3.gif" lazyload><br>进入可看到gitlab所有项目，选择一个项目，进入点击activate 激活进入项目即可。<br><img src="https://cdn.l2xy.com/post_img/Drone%E4%B8%8EGitLab%E5%AE%9E%E7%8E%B0Laravel%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E3%80%81%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/image8.png" srcset="/img/loading/loading3.gif" lazyload><br>打开设置里面的 Truste 开关，允许容器挂载主机。<br><img src="https://cdn.l2xy.com/post_img/Drone%E4%B8%8EGitLab%E5%AE%9E%E7%8E%B0Laravel%E9%A1%B9%E7%9B%AE%E8%87%AA%E5%8A%A8%E6%9E%84%E5%BB%BA%E3%80%81%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2/image9.png" srcset="/img/loading/loading3.gif" lazyload><br><a name="VGIYN"></a></p>
 <h2 id="部署-Drone-Runner-服务"><a href="#部署-Drone-Runner-服务" class="headerlink" title="部署 Drone Runner 服务"></a>部署 Drone Runner 服务</h2><p><a name="tSBwq"></a></p>
 <h3 id="创建-Drone-Runner-目录"><a href="#创建-Drone-Runner-目录" class="headerlink" title="创建 Drone Runner 目录"></a>创建 Drone Runner 目录</h3><figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">mkdir -p /usr/local/docker/drone-runner<br></code></pre></td></tr></tbody></table></figure>
