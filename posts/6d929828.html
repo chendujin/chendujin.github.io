@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis 的持久化">
 <meta property="og:url" content="https://www.chendujin.com/posts/6d929828.html">
-<meta property="og:site_name" content="托马斯 の 博客">
+<meta property="og:site_name" content="编程技术分享">
 <meta property="og:description" content="Redis 的持久化两种持久化方式 RDB 指定的时间间隔内保存数据快照 AOF 先把命令追加到操作日志的尾部，保存所有历史操作命令  RDB 模式 优点   适合用于进行备份 fork 出子进程进行备份，主进程没有任何 IO 操作 恢复大数据集时的速度快   缺点   特定条件下进行一次持久化，易丢失数据 庞大数据时，保存时会出现性能问题  设置方式 配置文件路径： sudo vim &#x2F;etc&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-25T07:04:56.000Z">
@@ -36,7 +36,7 @@
   
      <!-- 一言 --> <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script> 
   
-  <title>Redis 的持久化 - 托马斯 の 博客</title>
+  <title>Redis 的持久化 - 编程技术分享</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -111,7 +111,7 @@
   
 <meta name="generator" content="Hexo 7.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="托马斯 の 博客" type="application/atom+xml">
+<link rel="alternate" href="/atom.xml" title="编程技术分享" type="application/atom+xml">
 </head>
 
 
@@ -125,7 +125,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>托马斯 の 博客</strong>
+      <strong>编程技术分享</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"

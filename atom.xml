@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>托马斯 の 博客</title>
+  <title>编程技术分享</title>
   
-  <subtitle>托马斯 の 博客</subtitle>
+  <subtitle>编程技术分享</subtitle>
   <link href="https://www.chendujin.com/atom.xml" rel="self"/>
   
   <link href="https://www.chendujin.com/"/>
